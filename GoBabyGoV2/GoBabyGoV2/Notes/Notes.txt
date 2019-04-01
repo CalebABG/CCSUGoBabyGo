@@ -1,0 +1,31 @@
+﻿Accelerometer Calibration Upon Startup:
+	- Possible add button; preferably, add a MenuItem to the Navigation
+	  page to calibrate the users phone's min/max acceleration (X and Y)
+	  Need to rotate forward, backwards; tilt right, left SLOWLY
+	  Fast movements should prompt the UI to alert the user.
+
+
+
+** iPhone Bluetooth: **
+
+Bluetooth device needs to be a MFi Accessory  (compatible [Made for iPhone])
+- https://www.amazon.com/DSD-TECH-Bluetooth-Compatible-Devices/dp/B07CHNJ1QN/ref=sr_1_1_sspa?crid=3VNGT86YFTC71&keywords=ble+module&qid=1553362123&s=gateway&sprefix=ble+mod%2Caps%2C119&sr=8-1-spons&psc=1
+
+Bluetooth Code:
+	- https://www.cumulations.com/blogs/45/integrating-apps-with-mfi-certification
+	- Documentation for External Accessory:
+		- https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Streams/Articles/ReadingInputStreams.html#//apple_ref/doc/uid/20002273-1002387
+
+- https://stackoverflow.com/questions/11202161/how-to-get-list-of-bluetooth-devices-using-externalaccessory-framework
+
+MFi Bluetooth Module: https://www.ampedrftech.com/datasheets/BT53_Datasheet.pdf
+
+- https://apple.stackexchange.com/questions/249751/apples-mfi-licensee-accessory-with-classic-bluetooth-communicate-with-app
+- https://stackoverflow.com/questions/50284991/sample-code-for-xamarin-cross-platform-bluetooth-connection
+	- https://www.zebra.com/content/dam/zebra/product-information/en-us/brochures-datasheets/software/ios-app-whitelisting-faq-en.pdf
+
+- https://stackoverflow.com/questions/11955278/connecting-to-a-bluetooth-device-from-ios-no-mfi
+
+
+
+***********************

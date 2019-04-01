@@ -1,0 +1,45 @@
+﻿HotReload Xaml:
+	- https://github.com/AndreiMisiukevich/HotReload
+
+
+Accelerometer:
+	- https://docs.microsoft.com/en-us/xamarin/essentials/accelerometer?context=xamarin/android
+
+
+Rounding Effect:
+	- Nugut Package:
+		- https://www.nuget.org/packages/HotTotem.RoundedContentView
+
+
+Device Rotation Lock:
+	- Nugut Package:
+		- https://www.nuget.org/packages/Plugin.DeviceOrientation/
+
+
+Font Awesome Icons:
+	- Use:
+		- http://www.fifthstreetpartners.com/using-fontawesome-5-in-xamarin-forms/
+		- https://github.com/frogerdevs/xamarin.forms/blob/master/MVVM%20Helper/Frog/Frog/Frog/App.xaml
+		- https://fontawesome.com/v4.7.0/icons/
+		- https://www.youtube.com/watch?v=uwq5tSvatAs
+
+
+iOS Safe Padding:
+	- Use:
+		- https://docs.microsoft.com/en-us/xamarin/xamarin-forms/platform/ios/page-safe-area-layout
+
+
+Data Binding:
+	- https://www.mvvmcross.com/documentation/fundamentals/data-binding
+
+
+Switch Label:
+	- https://forums.xamarin.com/discussion/30526/custom-texton-textoff-for-switch-possible-to-override-or-support-on-roadmap
+
+
+Toast Notifications:
+	- https://stackoverflow.com/questions/35279403/toast-equivalent-for-xamarin-forms
+
+
+	Dependency Service:
+		- https://docs.microsoft.com/en-us/xamarin/xamarin-forms/app-fundamentals/dependency-service/introduction

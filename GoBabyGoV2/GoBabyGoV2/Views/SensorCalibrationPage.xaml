@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:hottotem="clr-namespace:HotTotem.RoundedContentView;assembly=HotTotem.RoundedContentView"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             x:Class="GoBabyGoV2.Views.SensorCalibrationPage"
+             BackgroundColor="White">
+
+    <ContentPage.Content>
+
+        <StackLayout Margin="25" VerticalOptions="CenterAndExpand">
+
+            <Label Text="Calibrate your phone's accelerometer!" TextColor="Black" FontSize="27"
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="CenterAndExpand" />
+
+            <Label Text="Slowly and gently rotate your phone fully around: horizontally and then vertically." 
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="Center" FontSize="18" TextColor="Black"/>
+
+            <StackLayout Orientation="Horizontal" HeightRequest="160" HorizontalOptions="Center" >
+
+                <Grid VerticalOptions="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label x:Name="accelMinXLabel" 
+                           Grid.Row="0" Grid.Column="0" 
+                           Text="{Binding AccelMinX, StringFormat='Min X: {0:F2}'}"
+                           TextColor="Black"
+                           FontSize="22" Margin="0,0,55,0"/>
+
+                    <Label x:Name="accelMaxXLabel" 
+                           Grid.Row="0" Grid.Column="1" 
+                           Text="{Binding AccelMaxX, StringFormat='Max X: {0:F2}'}" 
+                           TextColor="Black"
+                           FontSize="22"/>
+
+                    <Label x:Name="accelMinYLabel" 
+                           Grid.Row="1" Grid.Column="0" 
+                           Text="{Binding AccelMinY, StringFormat=' Min Y: {0:F2}'}" 
+                           TextColor="Black"
+                           FontSize="22" Margin="0,0,55,0"/>
+
+                    <Label x:Name="accelMaxYLabel" 
+                           Grid.Row="1" Grid.Column="1" 
+                           Text="{Binding AccelMaxY, StringFormat='Max Y: {0:F2}'}" 
+                           TextColor="Black"
+                           FontSize="22"/>
+
+                </Grid>
+
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+
+                <Button Text="Reset" TextColor="Black" BackgroundColor="GhostWhite" CornerRadius="50" Command="{Binding ResetCalibrationCommand}"/>
+                <Button Text="Set Default" TextColor="Black" BackgroundColor="GhostWhite" CornerRadius="50" Command="{Binding SetDefaultCalibrationCommand}"/>
+                <Button Text="Done" TextColor="Black" BackgroundColor="GhostWhite" CornerRadius="50" Command="{Binding DoneButtonCommand}"/>
+
+            </StackLayout>
+
+        </StackLayout>
+
+    </ContentPage.Content>
+
+</ContentPage>
