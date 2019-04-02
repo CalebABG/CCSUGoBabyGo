@@ -6,10 +6,10 @@ we hope to finish very soon is called GoBabyGo.
 
 <b>Go Baby Go</b> is a national organization that enables mobility solutions for children with disabilities.
 
-Our clubs goal is to implement advanced electronic solutions in the form of a customizable, 
+<b>Our</b> clubs goal is to implement advanced electronic solutions in the form of a customizable, 
 remotely controlled car, for movement facilitation.
 
-This Git project is a Xamarin Forms Mobile app for both Android and iOS for controlling the car using Bluetooth 4.0 LE for communication:
+This Git project is a <b>Xamarin Forms Mobile</b> app for both Android and iOS for controlling the car using Bluetooth 4.0 LE for communication:
 1. From the car to the app (Sender) 
 2. From the app to the car (Reciever)
 
@@ -20,13 +20,8 @@ Tilting the phone down is reverse, up is forward, and logically, left and right 
 
 
 ## Project Dev
----
 
-#### Currently for this project, only the Android solution, has working Bluetooth implementation. An iOS implementation is on the way very soon!
-
----
-
----
+#### ** Currently for this project, only the Android solution, has working Bluetooth implementation. An iOS implementation is on the way very soon! **
 
 ### App Design
 Welcome Page | Control Page
