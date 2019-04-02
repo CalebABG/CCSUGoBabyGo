@@ -33,6 +33,10 @@ Data Binding:
 	- https://www.mvvmcross.com/documentation/fundamentals/data-binding
 
 
+Static Properties Xaml Bindings
+	- https://stackoverflow.com/questions/15854708/how-can-i-bind-a-xaml-property-to-a-static-variable-in-another-class
+
+
 Switch Label:
 	- https://forums.xamarin.com/discussion/30526/custom-texton-textoff-for-switch-possible-to-override-or-support-on-roadmap
 

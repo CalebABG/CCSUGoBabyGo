@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using GoBabyGoV2.Utilities;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -29,12 +29,11 @@ namespace GoBabyGoV2.Views
 
             try
             {
-                CalibrationViewModel.Init();
+                AccelMonitor.AccelCalib.ShouldCalibrate = true;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
             }
         }
 
@@ -44,12 +43,11 @@ namespace GoBabyGoV2.Views
 
             try
             {
-                CalibrationViewModel.Dispose();
+                AccelMonitor.AccelCalib.ShouldCalibrate = false;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
             }
         }
 

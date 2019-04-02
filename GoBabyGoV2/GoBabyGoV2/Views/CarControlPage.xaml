@@ -86,10 +86,10 @@
                                          Orientation="Horizontal" 
                                          HorizontalOptions="End">
 
-                                <Label Text="{Binding Switch, Converter={StaticResource BoolToStringConverter}}"
+                                <Label Text="{Binding IsCalcTicked, Converter={StaticResource BoolToStringConverter}}"
                                        FontSize="18" TextColor="White"/>
 
-                                <Switch IsToggled="{Binding Switch, Mode=TwoWay}" 
+                                <Switch IsToggled="{Binding IsCalcTicked, Mode=TwoWay}" 
                                         HeightRequest="30"/>
 
                             </StackLayout>

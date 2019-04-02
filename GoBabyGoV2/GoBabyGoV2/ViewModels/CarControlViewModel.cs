@@ -13,8 +13,8 @@ namespace GoBabyGoV2.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private bool _switch;
-        public bool Switch { get => _switch; set => SetProperty(ref _switch, value); }
+        private bool _isCalcTicked;
+        public bool IsCalcTicked { get => _isCalcTicked; set => SetProperty(ref _isCalcTicked, value); }
 
         public ICommand CalibrateSensorCommand { get; set; }
 

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GoBabyGoV2.DependencyServices;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -17,9 +18,6 @@ namespace GoBabyGoV2.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CarControlPage : ContentPage
     {
-        // Set speed delay for monitoring changes. 
-        public static SensorSpeed SensorSpeed { get; } = SensorSpeed.Game;
-
         private CarControlViewModel ControlViewModel { get; }
 
 
@@ -32,6 +30,9 @@ namespace GoBabyGoV2.Views
             ControlViewModel = new CarControlViewModel(Navigation);
 
             BindingContext = ControlViewModel;
+
+            AccelMonitor.AddAccelerometerCallback(CarControlAccelerometerReadingChanged);
+            AccelMonitor.StartAccelMonitor();
         }
 
         #endregion
@@ -40,22 +41,10 @@ namespace GoBabyGoV2.Views
         {
             base.OnAppearing();
 
-            try
-            {
-                Accelerometer.ReadingChanged += Accelerometer_ReadingChanged;
-
-                AccelMonitor.StartAccelMonitor();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-
-            /*WaitAndExecute(1000, async () =>
+            /*WaitAndExecute(async () =>
             {
                 await Task.Delay(1500);
-                Xamarin.Forms.DependencyService.Get<IToast>().ShortAlert("Welcome");
+                DependencyService.Get<IToast>().ShortAlert("Welcome");
             });*/
         }
 
@@ -63,61 +52,57 @@ namespace GoBabyGoV2.Views
         {
             base.OnDisappearing();
 
-            try
+            /*try
             {
                 AccelMonitor.StopAccelMonitor();
 
                 // Unsub from reading changed
-                Accelerometer.ReadingChanged -= Accelerometer_ReadingChanged;
+                Accelerometer.ReadingChanged -= CarControlAccelerometerReadingChanged;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;
-            }
+            }*/
             // Xamarin.Forms.DependencyService.Get<IToast>().ShortAlert("RemovedAccelC");
         }
 
         #region Accelerometer
 
-        public void Accelerometer_ReadingChanged(object sender, AccelerometerChangedEventArgs e)
+        public void CarControlAccelerometerReadingChanged(object sender, AccelerometerChangedEventArgs e)
         {
             var data = e.Reading;
-
             var accelX = data.Acceleration.X;
             var accelY = data.Acceleration.Y;
 
-
             // Process Acceleration X and Y (Xamarin Essentials outputs in G-force units)
-
-            uint calcAccelX = (uint) Round(Map(accelX, AccelMinX, AccelMaxX, 255.0, 0.0));
-            uint calcAccelY = (uint) Round(Map(accelY, AccelMinY, AccelMaxY, 255.0, 0.0));
-
-            /*uint calcAccelX = (uint) Floor(Map(Constrain(accelX, AccelMinX, AccelMaxX), AccelMinX,AccelMaxX, 255.0, 0.0));
-            uint calcAccelY = (uint) Floor(Map(Constrain(accelY, AccelMinY, AccelMaxY), AccelMinY,AccelMaxY, 255.0, 0.0));*/
+            uint calcAccelX = (uint) Round(Map(accelX, AccelCalib.AccelMinX, AccelCalib.AccelMaxX, 255.0, 0.0));
+            uint calcAccelY = (uint) Round(Map(accelY, AccelCalib.AccelMinY, AccelCalib.AccelMaxY, 255.0, 0.0));
 
             MainThread.BeginInvokeOnMainThread(() =>
             {
-                if (ControlViewModel.Switch)
+                if (AccelCalib.ShouldCalibrate)
+                {
+                    if (accelX < AccelCalib.AccelMinX) AccelCalib.AccelMinX = accelX;
+                    if (accelX > AccelCalib.AccelMaxX) AccelCalib.AccelMaxX = accelX;
+
+                    if (accelY < AccelCalib.AccelMinY) AccelCalib.AccelMinY = accelY;
+                    if (accelY > AccelCalib.AccelMaxY) AccelCalib.AccelMaxY = accelY;
+                }
+
+                if (ControlViewModel.IsCalcTicked)
                 {
                     accelXLabel.Text = $"{calcAccelX}";
                     accelYLabel.Text = $"{calcAccelY}";
                 }
                 else
                 {
-                    var c = 9.81;
-
+                    const float c = 9.81f;
                     var ax = accelX * c;
                     var ay = accelY * c;
 
-                    accelXLabel.Text = $"{ax:0.00}";
-                    accelYLabel.Text = $"{ay:0.00}";
-
-                    /*var ax = accelX * 9.81;
-                    var ay = accelY * 9.81;
-
                     accelXLabel.Text = $"{ax:0.00} m/s\u00B2";
-                    accelYLabel.Text = $"{ay:0.00} m/s\u00B2";*/
+                    accelYLabel.Text = $"{ay:0.00} m/s\u00B2";
                 }
             });
         }
@@ -147,23 +132,16 @@ namespace GoBabyGoV2.Views
             var result = await DisplayAlert("Wait", "Do You Want to Exit?", "Yes", "Cancel");
 
             if (result) await Navigation.PopAsync(true);
-            //            if (result) await ControlViewModel.ParentNavigation.PopAsync(true);
         }
 
         #endregion
 
-        #region Utility
+        #region UtilityFunctions
 
-        protected void WaitAndExecute(int milisec, Action actionToExecute)
+        protected void WaitAndExecute(Action actionToExecute, int delay = 1000)
         {
             actionToExecute();
         }
-
-        /*protected async Task WaitAndExecute(int milisec, Action actionToExecute)
-        {
-            await Task.Delay(milisec);
-            actionToExecute();
-        }*/
 
         #endregion
     }
