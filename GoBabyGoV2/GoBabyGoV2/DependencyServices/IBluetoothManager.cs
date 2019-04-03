@@ -8,6 +8,8 @@ namespace GoBabyGoV2.DependencyServices
     {
         void Connect(string macaddr, bool secureconnection = false);
 
+        int GetConnectionState();
+
         void Start();
 
         void Stop();

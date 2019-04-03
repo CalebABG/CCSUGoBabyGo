@@ -41,6 +41,7 @@ namespace GoBabyGoV2.Views
         {
             base.OnAppearing();
 
+
             /*WaitAndExecute(async () =>
             {
                 await Task.Delay(1500);
