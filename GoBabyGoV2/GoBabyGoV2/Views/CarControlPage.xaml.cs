@@ -37,6 +37,8 @@ namespace GoBabyGoV2.Views
 
         #endregion
 
+        #region OnAppearDisappear
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -67,6 +69,8 @@ namespace GoBabyGoV2.Views
             }*/
             // Xamarin.Forms.DependencyService.Get<IToast>().ShortAlert("RemovedAccelC");
         }
+
+        #endregion
 
         #region Accelerometer
 

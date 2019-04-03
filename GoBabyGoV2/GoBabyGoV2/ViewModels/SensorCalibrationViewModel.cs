@@ -12,15 +12,21 @@ namespace GoBabyGoV2.ViewModels
     {
         public INavigation ParentNavigation { get; }
 
+        #region Properties
+
         public ICommand DoneButtonCommand { get; set; }
 
         public ICommand SetDefaultCalibrationCommand { get; set; }
 
         public ICommand ResetCalibrationCommand { get; set; }
 
+        #endregion
+
         public SensorCalibrationViewModel(INavigation parentNavigation)
         {
             ParentNavigation = parentNavigation;
+
+            #region SetupCommands
 
             DoneButtonCommand = new Command(async () => await ParentNavigation.PopModalAsync(true));
 
@@ -42,6 +48,8 @@ namespace GoBabyGoV2.ViewModels
                 AccelMonitor.AccelCalib.AccelMinY = 0.0f;
                 AccelMonitor.AccelCalib.AccelMaxY = 0.0f;
             });
+
+            #endregion
         }
     }
 }

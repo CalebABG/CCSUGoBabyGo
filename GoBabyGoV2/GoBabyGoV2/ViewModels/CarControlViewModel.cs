@@ -6,13 +6,17 @@ using System.Text;
 using System.Windows.Input;
 using GoBabyGoV2.DependencyServices;
 using GoBabyGoV2.Views;
+using MvvmHelpers;
 using Xamarin.Forms;
 
 namespace GoBabyGoV2.ViewModels
 {
-    public class CarControlViewModel : INotifyPropertyChanged
+    public class CarControlViewModel : BaseViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        public INavigation ParentNavigation { get; }
+
+
+        #region Properties
 
         private bool _isCalcTicked;
         public bool IsCalcTicked { get => _isCalcTicked; set => SetProperty(ref _isCalcTicked, value); }
@@ -28,13 +32,15 @@ namespace GoBabyGoV2.ViewModels
 
         public ICommand ReconnectIconCommand { get; set; }
 
-        public INavigation ParentNavigation { get; }
+        #endregion
 
 
         public CarControlViewModel(INavigation parentNavigation)
         {
             // Get the parent controls navigation handler
             ParentNavigation = parentNavigation;
+
+            #region SetupCommands
 
             // Set Calibrate Sensor Command
             CalibrateSensorCommand = new Command(NavigateToCalibrationPage);
@@ -73,9 +79,12 @@ namespace GoBabyGoV2.ViewModels
                 // toast
                 DependencyService.Get<IToast>().ShortAlert("Connecting...");
             });
+
+            #endregion
+
         }
 
-        #region CalibrateSensorMethod
+        #region CalibrationNavigationMethod
 
         private async void NavigateToCalibrationPage()
         {
@@ -89,25 +98,5 @@ namespace GoBabyGoV2.ViewModels
         }
 
         #endregion
-
-        #region PropertyChangeHandler
-
-        private bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
-        {
-            if (Equals(storage, value))
-                return false;
-
-            storage = value;
-            OnPropertyChanged(propertyName);
-            return true;
-        }
-
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        #endregion
-
     }
 }
