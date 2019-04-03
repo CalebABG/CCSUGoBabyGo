@@ -81,10 +81,8 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DependencyServices\AbstractHandler.cs" />
     <Compile Include="DependencyServices\BluetoothManagerAndroid.cs" />
     <Compile Include="DependencyServices\MyBluetoothService.cs" />
-    <Compile Include="DependencyServices\MyHandler.cs" />
     <Compile Include="DependencyServices\ToastAndroid.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
