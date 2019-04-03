@@ -26,7 +26,6 @@ namespace GoBabyGoV2.ViewModels
 
             SetDefaultCalibrationCommand = new Command(() =>
             {
-
                 AccelMonitor.AccelCalib.AccelMinX = AccelMonitor.AccelCalibDefault[0];
                 AccelMonitor.AccelCalib.AccelMaxX = AccelMonitor.AccelCalibDefault[1];
                 AccelMonitor.AccelCalib.AccelMinY = AccelMonitor.AccelCalibDefault[2];

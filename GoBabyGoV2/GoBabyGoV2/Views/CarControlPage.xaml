@@ -11,6 +11,7 @@
 
     <ContentPage.Resources>
         <utilities:BoolToStringConverter x:Key="BoolToStringConverter"/>
+        <utilities:BoolToColorConverter x:Key="BoolToColorConverter"/>
     </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
@@ -42,14 +43,17 @@
                         <StackLayout Orientation="Horizontal">
 
                             <Button Text="{StaticResource StopIcon}"
+                                    Command="{Binding StopIconCommand}"
                                     BackgroundColor="{StaticResource StopColor}"
                                     Style="{StaticResource buttonStyle}"/>
 
-                            <Button Text="{StaticResource ShieldIcon}" 
-                                    BackgroundColor="{StaticResource ShieldColor}"
+                            <Button Text="{StaticResource ShieldIcon}"
+                                    Command="{Binding ShieldIconCommand}"
+                                    BackgroundColor="{Binding ParentalOverrideActive, Converter={StaticResource BoolToColorConverter}}"
                                     Style="{StaticResource buttonStyle}"/>
 
                             <Button Text="{StaticResource ReconnectIcon}" 
+                                    Command="{Binding ReconnectIconCommand}"
                                     BackgroundColor="{StaticResource ReconnectColor}"
                                     Style="{StaticResource buttonStyle}"/>
 

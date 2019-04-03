@@ -14,7 +14,8 @@
         <Color x:Key="ColorAccent">#3339c5</Color>
         <Color x:Key="StopColor">#ff44</Color>
         <Color x:Key="ReconnectColor">#FF008EBB</Color>
-        <Color x:Key="ShieldColor">#FF32A341</Color>
+        <Color x:Key="ShieldColorActive">#FF32A341</Color>
+        <Color x:Key="ShieldColorInActive">#AEB1AE</Color>
 
         <x:String x:Key="ReconnectIcon">&#xf021;</x:String>
         <x:String x:Key="ShieldIcon">&#xf11b;</x:String>
