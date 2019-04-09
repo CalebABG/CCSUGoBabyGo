@@ -70,7 +70,6 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <BundleResource Include="Resources\fontawesome-webfont.ttf" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -146,12 +145,13 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\GoBabyGoV2\GoBabyGoV2.csproj">
-      <Project>{510BF13A-90D4-46C9-9E41-268D31D7D5FF}</Project>
+      <Project>{8FF61BD3-273F-4D2F-B346-E12F4255B4E6}</Project>
       <Name>GoBabyGoV2</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\icon-web.png" />
+    <BundleResource Include="Resources\fontawesome-webfont.ttf" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\go.png" />

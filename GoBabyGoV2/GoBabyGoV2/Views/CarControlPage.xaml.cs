@@ -32,7 +32,9 @@ namespace GoBabyGoV2.Views
             BindingContext = ControlViewModel;
 
             AccelMonitor.AddAccelerometerCallback(CarControlAccelerometerReadingChanged);
-            AccelMonitor.StartAccelMonitor();
+
+            if(!Device.RuntimePlatform.Equals(Device.iOS))
+                AccelMonitor.StartAccelMonitor();
         }
 
         #endregion

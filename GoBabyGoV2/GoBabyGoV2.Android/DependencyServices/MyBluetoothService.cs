@@ -349,7 +349,7 @@ namespace GoBabyGoV2.Droid.DependencyServices
 //            private BluetoothAdapter mAdapter;
             private string mSocketType;
 
-            public AcceptThread(bool secure, in MyBluetoothService bluetoothService)
+            public AcceptThread(bool secure, MyBluetoothService bluetoothService)
             {
                 BluetoothServerSocket tmp = null;
                 mSocketType = secure ? "Secure" : "Insecure";
@@ -465,7 +465,7 @@ namespace GoBabyGoV2.Droid.DependencyServices
             private BluetoothDevice mmDevice;
             private string mSocketType;
 
-            public ConnectThread(BluetoothDevice device, bool secure, in MyBluetoothService bluetoothService)
+            public ConnectThread(BluetoothDevice device, bool secure, MyBluetoothService bluetoothService)
             {
                 mmDevice = device;
                 BluetoothSocket tmp = null;
@@ -562,7 +562,7 @@ namespace GoBabyGoV2.Droid.DependencyServices
             private System.IO.Stream mmInStream;
             private System.IO.Stream mmOutStream;
 
-            public ConnectedThread(BluetoothSocket socket, string socketType, in MyBluetoothService bluetoothService)
+            public ConnectedThread(BluetoothSocket socket, string socketType, MyBluetoothService bluetoothService)
             {
                 parentBluetoothService = bluetoothService;
                 Log.Debug(TAG, "create ConnectedThread: " + socketType);

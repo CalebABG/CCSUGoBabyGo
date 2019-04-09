@@ -1,51 +1,53 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GoBabyGoV2.App">
     
     <Application.Resources>
+        <ResourceDictionary>
+            
+            <OnPlatform x:Key="IconFontFamily" x:TypeArguments="x:String" 
+                        Android="fontawesome-webfont.ttf#fontawesome-webfont"
+                        iOS="Font Awesome 5 Free">
+            </OnPlatform>
 
-        <OnPlatform x:Key="IconFontFamily" x:TypeArguments="x:String" 
-                    Android="fontawesome-webfont.ttf#fontawesome-webfont"
-                    iOS="fontawesome-webfont">
-        </OnPlatform>
+            <Color x:Key="ColorPrimary">#369cd9</Color>
+            <Color x:Key="ColorAccent">#3339c5</Color>
+            <Color x:Key="StopColor">#ff44</Color>
+            <Color x:Key="ReconnectColor">#FF008EBB</Color>
+            <Color x:Key="ShieldColorActive">#FF32A341</Color>
+            <Color x:Key="ShieldColorInActive">#AEB1AE</Color>
 
-        <Color x:Key="ColorPrimary">#369cd9</Color>
-        <Color x:Key="ColorAccent">#3339c5</Color>
-        <Color x:Key="StopColor">#ff44</Color>
-        <Color x:Key="ReconnectColor">#FF008EBB</Color>
-        <Color x:Key="ShieldColorActive">#FF32A341</Color>
-        <Color x:Key="ShieldColorInActive">#AEB1AE</Color>
-
-        <x:String x:Key="ReconnectIcon">&#xf021;</x:String>
-        <x:String x:Key="ShieldIcon">&#xf11b;</x:String>
-        <x:String x:Key="StopIcon">&#xf06a;</x:String>
-        <x:String x:Key="AxisIcon">&#xf2db;</x:String>
-        <x:String x:Key="BluetoothIcon">&#xf294;</x:String>
-        <x:String x:Key="PowerIcon">&#xf011;</x:String>
+            <x:String x:Key="ReconnectIcon">&#xf021;</x:String>
+            <x:String x:Key="ShieldIcon">&#xf11b;</x:String>
+            <x:String x:Key="StopIcon">&#xf06a;</x:String>
+            <x:String x:Key="AxisIcon">&#xf2db;</x:String>
+            <x:String x:Key="BluetoothIcon">&#xf294;</x:String>
+            <x:String x:Key="PowerIcon">&#xf011;</x:String>
 
 
-        <Style x:Key="buttonStyle" TargetType="Button">
-            <Setter Property="FontFamily" Value="{StaticResource IconFontFamily}"/>
-            <Setter Property="VerticalOptions" Value="Center"/>
-            <Setter Property="WidthRequest" Value="60"/>
-            <Setter Property="HeightRequest" Value="60"/>
-            <Setter Property="FontSize" Value="35"/>
-            <Setter Property="CornerRadius" Value="30"/>
-        </Style>
+            <Style x:Key="buttonStyle" TargetType="Button">
+                <Setter Property="FontFamily" Value="{StaticResource IconFontFamily}"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="WidthRequest" Value="60"/>
+                <Setter Property="HeightRequest" Value="60"/>
+                <Setter Property="FontSize" Value="35"/>
+                <Setter Property="CornerRadius" Value="30"/>
+            </Style>
 
-        <Style x:Key="labelStyle" TargetType="Button">
-            <Setter Property="FontFamily" Value="{StaticResource IconFontFamily}"/>
-            <Setter Property="VerticalOptions" Value="Fill"/>
-            <Setter Property="WidthRequest" Value="40"/>
-            <Setter Property="HeightRequest" Value="40"/>
-            <Setter Property="TextColor" Value="White"/>
-            <Setter Property="BackgroundColor" Value="Transparent"/>
-            <Setter Property="Padding" Value="0"/>
-            <Setter Property="Margin" Value="0"/>
-            <Setter Property="FontSize" Value="35"/>
-        </Style>
-        
+            <Style x:Key="labelStyle" TargetType="Button">
+                <Setter Property="FontFamily" Value="{StaticResource IconFontFamily}"/>
+                <Setter Property="VerticalOptions" Value="Fill"/>
+                <Setter Property="WidthRequest" Value="40"/>
+                <Setter Property="HeightRequest" Value="40"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="FontSize" Value="35"/>
+            </Style>
+            
+        </ResourceDictionary>
     </Application.Resources>
 
 </Application>
