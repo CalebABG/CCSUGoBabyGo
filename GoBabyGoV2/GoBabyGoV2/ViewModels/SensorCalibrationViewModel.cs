@@ -10,8 +10,6 @@ namespace GoBabyGoV2.ViewModels
 {
     public class SensorCalibrationViewModel
     {
-        public INavigation ParentNavigation { get; }
-
         #region Properties
 
         public ICommand DoneButtonCommand { get; set; }
@@ -22,13 +20,11 @@ namespace GoBabyGoV2.ViewModels
 
         #endregion
 
-        public SensorCalibrationViewModel(INavigation parentNavigation)
+        public SensorCalibrationViewModel()
         {
-            ParentNavigation = parentNavigation;
-
             #region SetupCommands
 
-            DoneButtonCommand = new Command(async () => await ParentNavigation.PopModalAsync(true));
+            DoneButtonCommand = new Command(async () => await Application.Current.MainPage.Navigation.PopModalAsync(true));
 
             SetDefaultCalibrationCommand = new Command(() =>
             {

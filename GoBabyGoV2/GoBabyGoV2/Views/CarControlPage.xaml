@@ -7,7 +7,12 @@
              NavigationPage.HasBackButton="False"
              Title="GoBabyGo Control"
              x:Class="GoBabyGoV2.Views.CarControlPage"
-             xmlns:utilities="clr-namespace:GoBabyGoV2.Utilities">
+             xmlns:utilities="clr-namespace:GoBabyGoV2.Utilities"
+             xmlns:local="clr-namespace:GoBabyGoV2.ViewModels">
+
+    <ContentPage.BindingContext>
+        <local:CarControlViewModel/>
+    </ContentPage.BindingContext>
 
     <ContentPage.Resources>
         <utilities:BoolToStringConverter x:Key="BoolToStringConverter"/>
@@ -93,7 +98,7 @@
                                 <Label Text="{Binding IsCalcTicked, Converter={StaticResource BoolToStringConverter}}"
                                        FontSize="18" TextColor="White"/>
 
-                                <Switch IsToggled="{Binding IsCalcTicked, Mode=TwoWay}" 
+                                <Switch IsToggled="{Binding IsCalcTicked, Mode=TwoWay}"
                                         HeightRequest="30"/>
 
                             </StackLayout>

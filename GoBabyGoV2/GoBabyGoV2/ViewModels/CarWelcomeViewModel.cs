@@ -11,9 +11,9 @@ namespace GoBabyGoV2.ViewModels
     {
         public ICommand GoToCarControlCommand { get; }
 
-        public CarWelcomeViewModel(INavigation navigation)
+        public CarWelcomeViewModel()
         {
-            GoToCarControlCommand = new Command(async () => await navigation.PushAsync(new CarControlPage(), true));
+            GoToCarControlCommand = new Command(async () => await Application.Current.MainPage.Navigation.PushAsync(new CarControlPage(), true));
         }
     }
 }

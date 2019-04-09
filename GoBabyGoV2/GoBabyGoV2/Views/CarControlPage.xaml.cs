@@ -18,18 +18,11 @@ namespace GoBabyGoV2.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CarControlPage : ContentPage
     {
-        private CarControlViewModel ControlViewModel { get; }
-
-
         #region Constructor
 
         public CarControlPage()
         {
             InitializeComponent();
-
-            ControlViewModel = new CarControlViewModel(Navigation);
-
-            BindingContext = ControlViewModel;
 
             AccelMonitor.AddAccelerometerCallback(CarControlAccelerometerReadingChanged);
 
@@ -97,7 +90,8 @@ namespace GoBabyGoV2.Views
                     if (accelY > AccelCalib.AccelMaxY) AccelCalib.AccelMaxY = accelY;
                 }
 
-                if (ControlViewModel.IsCalcTicked)
+                if (((CarControlViewModel) BindingContext).IsCalcTicked)
+//                if (ControlViewModel.IsCalcTicked)
                 {
                     accelXLabel.Text = $"{calcAccelX}";
                     accelYLabel.Text = $"{calcAccelY}";

@@ -1,12 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:hottotem="clr-namespace:HotTotem.RoundedContentView;assembly=HotTotem.RoundedContentView"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:local="clr-namespace:GoBabyGoV2.ViewModels"
              ios:Page.UseSafeArea="true"
              x:Class="GoBabyGoV2.Views.CarWelcomePage"
              BackgroundColor="{StaticResource ColorAccent}"
              Title="GoBabyGo Welcome">
+
+    <ContentPage.BindingContext>
+        <local:CarWelcomeViewModel/>
+    </ContentPage.BindingContext>
     
     <ContentPage.Content>
 

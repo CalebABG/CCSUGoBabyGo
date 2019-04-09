@@ -13,14 +13,9 @@ namespace GoBabyGoV2.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SensorCalibrationPage : ContentPage
     {
-        public SensorCalibrationViewModel CalibrationViewModel { get; set; }
         public SensorCalibrationPage()
         {
             InitializeComponent();
-
-            CalibrationViewModel = new SensorCalibrationViewModel(Navigation);
-
-            BindingContext = CalibrationViewModel;
         }
 
         protected override void OnAppearing()

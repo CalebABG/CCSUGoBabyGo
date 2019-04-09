@@ -13,9 +13,6 @@ namespace GoBabyGoV2.ViewModels
 {
     public class CarControlViewModel : BaseViewModel
     {
-        public INavigation ParentNavigation { get; }
-
-
         #region Properties
 
         private bool _isCalcTicked;
@@ -35,11 +32,8 @@ namespace GoBabyGoV2.ViewModels
         #endregion
 
 
-        public CarControlViewModel(INavigation parentNavigation)
+        public CarControlViewModel()
         {
-            // Get the parent controls navigation handler
-            ParentNavigation = parentNavigation;
-
             #region SetupCommands
 
             // Set Calibrate Sensor Command
@@ -81,7 +75,6 @@ namespace GoBabyGoV2.ViewModels
             });
 
             #endregion
-
         }
 
         #region CalibrationNavigationMethod
@@ -92,7 +85,7 @@ namespace GoBabyGoV2.ViewModels
 
 
             // Add new page to Navigation stack
-            await ParentNavigation.PushModalAsync(new SensorCalibrationPage());
+            await Application.Current.MainPage.Navigation.PushModalAsync(new SensorCalibrationPage());
             // await Navigation.PushModalAsync(new SensorCalibrationPage
             // await Application.Current.NavigationProxy.PushModalAsync(new SensorCalibrationPage());
         }

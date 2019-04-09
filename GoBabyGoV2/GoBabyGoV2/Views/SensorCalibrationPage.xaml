@@ -1,12 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:hottotem="clr-namespace:HotTotem.RoundedContentView;assembly=HotTotem.RoundedContentView"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-             xmlns:ultilities="clr-namespace:GoBabyGoV2.Utilities"
+             xmlns:local="clr-namespace:GoBabyGoV2.ViewModels"
+             xmlns:utilities="clr-namespace:GoBabyGoV2.Utilities"
              ios:Page.UseSafeArea="true"
              x:Class="GoBabyGoV2.Views.SensorCalibrationPage"
              BackgroundColor="White">
+
+    <ContentPage.BindingContext>
+        <local:SensorCalibrationViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="CalibButtonColor">#C4E3FF</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ContentPage.Content>
 
@@ -23,7 +33,7 @@
             <StackLayout Orientation="Horizontal" HeightRequest="160" HorizontalOptions="Center" >
 
                 <Grid VerticalOptions="Center" 
-                      BindingContext="{x:Static ultilities:AccelMonitor.AccelCalib}">
+                      BindingContext="{x:Static utilities:AccelMonitor.AccelCalib}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -63,9 +73,14 @@
 
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
 
-                <Button Text="Reset" TextColor="Black" BackgroundColor="GhostWhite" CornerRadius="50" Command="{Binding ResetCalibrationCommand}"/>
-                <Button Text="Set Default" TextColor="Black" BackgroundColor="GhostWhite" CornerRadius="50" Command="{Binding SetDefaultCalibrationCommand}"/>
-                <Button Text="Done" TextColor="Black" BackgroundColor="GhostWhite" CornerRadius="50" Command="{Binding DoneButtonCommand}"/>
+                <Button Text="Reset" TextColor="Black" 
+                        BackgroundColor="{StaticResource CalibButtonColor}" Padding="10,0" CornerRadius="20" Command="{Binding ResetCalibrationCommand}"/>
+                
+                <Button Text="Default" TextColor="Black" 
+                        BackgroundColor="{StaticResource CalibButtonColor}" Padding="10,0" CornerRadius="20" Command="{Binding SetDefaultCalibrationCommand}"/>
+                
+                <Button Text="Done" TextColor="Black" 
+                        BackgroundColor="{StaticResource CalibButtonColor}" Padding="10,0" CornerRadius="20" Command="{Binding DoneButtonCommand}"/>
 
             </StackLayout>
 

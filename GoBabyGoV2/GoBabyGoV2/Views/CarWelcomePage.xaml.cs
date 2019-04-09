@@ -16,8 +16,6 @@ namespace GoBabyGoV2.Views
         public CarWelcomePage()
         {
             InitializeComponent();
-
-            BindingContext = new CarWelcomeViewModel(Navigation);
         }
     }
 }

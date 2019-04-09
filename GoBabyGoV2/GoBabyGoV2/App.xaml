@@ -27,7 +27,7 @@
 
 
             <Style x:Key="buttonStyle" TargetType="Button">
-                <Setter Property="FontFamily" Value="{StaticResource IconFontFamily}"/>
+                <!-- <Setter Property="FontFamily" Value="{StaticResource IconFontFamily}"/> -->
                 <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="WidthRequest" Value="60"/>
                 <Setter Property="HeightRequest" Value="60"/>
@@ -36,7 +36,7 @@
             </Style>
 
             <Style x:Key="labelStyle" TargetType="Button">
-                <Setter Property="FontFamily" Value="{StaticResource IconFontFamily}"/>
+                <!-- <Setter Property="FontFamily" Value="{StaticResource IconFontFamily}"/> -->
                 <Setter Property="VerticalOptions" Value="Fill"/>
                 <Setter Property="WidthRequest" Value="40"/>
                 <Setter Property="HeightRequest" Value="40"/>
