@@ -4,6 +4,7 @@
              xmlns:hottotem="clr-namespace:HotTotem.RoundedContentView;assembly=HotTotem.RoundedContentView"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="true"
+             NavigationPage.HasBackButton="False"
              Title="GoBabyGo Control"
              x:Class="GoBabyGoV2.Views.CarControlPage"
              xmlns:utilities="clr-namespace:GoBabyGoV2.Utilities"
