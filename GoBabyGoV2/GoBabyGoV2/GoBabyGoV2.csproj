@@ -11,14 +11,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\fontawesome-webfont.ttf" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\fontawesome-webfont.ttf" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="HotTotem.RoundedContentView" Version="1.0.0.2" />
     <PackageReference Include="NUnit" Version="3.11.0" />
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.4.1-beta" />
@@ -38,6 +30,7 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
 
   <ItemGroup>
