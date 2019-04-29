@@ -5,12 +5,26 @@
     
     <Application.Resources>
         <ResourceDictionary>
-            
-            <OnPlatform x:Key="IconFontFamily" x:TypeArguments="x:String" 
-                        Android="fontawesome-webfont.ttf#fontawesome-webfont"
-                        iOS="Font Awesome 5 Free">
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeBrands">
+                <On Platform="Android" Value="FontAwesome5Brands.otf#Regular" />
+                <On Platform="iOS" Value="FontAwesome5Brands-Regular" />
+                <On Platform="UWP" Value="/Assets/FontAwesome5Brands.otf#Font Awesome 5 Brands" />
             </OnPlatform>
 
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeSolid">
+                <On Platform="Android" Value="FontAwesome5Solid.otf#Regular" />
+                <On Platform="iOS" Value="FontAwesome5Free-Solid" />
+                <!-- <On Platform="UWP" Value="/Assets/FontAwesome5Solid.otf#Font Awesome 5 Free" /> -->
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeRegular">
+                <On Platform="Android" Value="FontAwesome5Regular.otf#Regular" />
+                <On Platform="iOS" Value="FontAwesome5Free-Regular" />
+                <!-- <On Platform="UWP" Value="/Assets/FontAwesome5Regular.otf#Font Awesome 5 Free" /> -->
+            </OnPlatform>
+
+            <!-- Static Colors -->
             <Color x:Key="ColorPrimary">#369cd9</Color>
             <Color x:Key="ColorAccent">#3339c5</Color>
             <Color x:Key="StopColor">#ff44</Color>
@@ -18,6 +32,7 @@
             <Color x:Key="ShieldColorActive">#FF32A341</Color>
             <Color x:Key="ShieldColorInActive">#AEB1AE</Color>
 
+            <!-- FontAwesome Icons -->
             <x:String x:Key="ReconnectIcon">&#xf021;</x:String>
             <x:String x:Key="ShieldIcon">&#xf11b;</x:String>
             <x:String x:Key="StopIcon">&#xf06a;</x:String>

@@ -30,6 +30,9 @@
                    HorizontalTextAlignment="Center"
                    HorizontalOptions="Center" FontSize="18" TextColor="Black"/>
 
+            <ImageButton Source="round_report_black_24.png" Aspect="AspectFit"
+                         HeightRequest="120" WidthRequest="40"/>
+
             <StackLayout Orientation="Horizontal" HeightRequest="160" HorizontalOptions="Center" >
 
                 <Grid VerticalOptions="Center" 
@@ -74,13 +77,16 @@
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
 
                 <Button Text="Reset" TextColor="Black" 
-                        BackgroundColor="{StaticResource CalibButtonColor}" Padding="10,0" CornerRadius="20" Command="{Binding ResetCalibrationCommand}"/>
+                        BackgroundColor="{StaticResource CalibButtonColor}" 
+                        Padding="10,0" CornerRadius="20" Command="{Binding ResetCalibrationCommand}"/>
                 
                 <Button Text="Default" TextColor="Black" 
-                        BackgroundColor="{StaticResource CalibButtonColor}" Padding="10,0" CornerRadius="20" Command="{Binding SetDefaultCalibrationCommand}"/>
+                        BackgroundColor="{StaticResource CalibButtonColor}" 
+                        Padding="10,0" CornerRadius="20" Command="{Binding SetDefaultCalibrationCommand}"/>
                 
                 <Button Text="Done" TextColor="Black" 
-                        BackgroundColor="{StaticResource CalibButtonColor}" Padding="10,0" CornerRadius="20" Command="{Binding DoneButtonCommand}"/>
+                        BackgroundColor="{StaticResource CalibButtonColor}" 
+                        Padding="10,0" CornerRadius="20" Command="{Binding DoneButtonCommand}"/>
 
             </StackLayout>
 
