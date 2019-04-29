@@ -29,6 +29,8 @@ namespace GoBabyGoV2.ViewModels
 
         public ICommand ReconnectIconCommand { get; set; }
 
+        public ICommand DisconnectIconCommand { get; set; }
+
         #endregion
 
 
@@ -37,6 +39,7 @@ namespace GoBabyGoV2.ViewModels
             #region SetupCommands
 
             // Set Calibrate Sensor Command
+
             CalibrateSensorCommand = new Command(NavigateToCalibrationPage);
 
             StopIconCommand = new Command(() =>
@@ -74,6 +77,14 @@ namespace GoBabyGoV2.ViewModels
                 DependencyService.Get<IToast>().ShortAlert("Connecting...");
             });
 
+            DisconnectIconCommand = new Command(() =>
+            {
+                // end connection with bluetooth
+
+                // toast
+                DependencyService.Get<IToast>().ShortAlert("Disconnecting Bluetooth...");
+            });
+
             #endregion
         }
 
@@ -86,8 +97,7 @@ namespace GoBabyGoV2.ViewModels
 
             // Add new page to Navigation stack
             await Application.Current.MainPage.Navigation.PushModalAsync(new SensorCalibrationPage());
-            // await Navigation.PushModalAsync(new SensorCalibrationPage
-            // await Application.Current.NavigationProxy.PushModalAsync(new SensorCalibrationPage());
+
         }
 
         #endregion

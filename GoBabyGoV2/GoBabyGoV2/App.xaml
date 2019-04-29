@@ -32,17 +32,17 @@
             <Color x:Key="ShieldColorActive">#FF32A341</Color>
             <Color x:Key="ShieldColorInActive">#AEB1AE</Color>
 
-            <!-- FontAwesome Icons -->
-            <x:String x:Key="ReconnectIcon">&#xf021;</x:String>
-            <x:String x:Key="ShieldIcon">&#xf11b;</x:String>
+            <!-- FontAwesome5 Icons: https://fontawesome.com/icons?d=gallery -->
+            <x:String x:Key="ReconnectIcon">&#xf2f1;</x:String>
+            <x:String x:Key="ShieldIcon">&#xf3ed;</x:String>
             <x:String x:Key="StopIcon">&#xf06a;</x:String>
             <x:String x:Key="AxisIcon">&#xf2db;</x:String>
             <x:String x:Key="BluetoothIcon">&#xf294;</x:String>
             <x:String x:Key="PowerIcon">&#xf011;</x:String>
 
 
-            <Style x:Key="buttonStyle" TargetType="Button">
-                <!-- <Setter Property="FontFamily" Value="{StaticResource IconFontFamily}"/> -->
+            <Style x:Key="ButtonStyle" TargetType="Button">
+                <!-- <Setter Property="FontFamily" Value="{StaticResource FontAwesomeSolid}"/> -->
                 <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="WidthRequest" Value="60"/>
                 <Setter Property="HeightRequest" Value="60"/>
@@ -50,8 +50,8 @@
                 <Setter Property="CornerRadius" Value="30"/>
             </Style>
 
-            <Style x:Key="labelStyle" TargetType="Button">
-                <!-- <Setter Property="FontFamily" Value="{StaticResource IconFontFamily}"/> -->
+            <Style x:Key="LabelStyle" TargetType="Button">
+                <Setter Property="FontFamily" Value="{StaticResource FontAwesomeSolid}"/>
                 <Setter Property="VerticalOptions" Value="Fill"/>
                 <Setter Property="WidthRequest" Value="40"/>
                 <Setter Property="HeightRequest" Value="40"/>

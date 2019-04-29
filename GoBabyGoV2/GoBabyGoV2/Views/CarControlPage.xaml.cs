@@ -24,10 +24,10 @@ namespace GoBabyGoV2.Views
         {
             InitializeComponent();
 
-            AccelMonitor.AddAccelerometerCallback(CarControlAccelerometerReadingChanged);
+            AddAccelerometerCallback(CarControlAccelerometerReadingChanged);
 
-            if(!Device.RuntimePlatform.Equals(Device.iOS))
-                AccelMonitor.StartAccelMonitor();
+            if (!Device.RuntimePlatform.Equals(Device.iOS))
+                StartAccelMonitor();
         }
 
         #endregion
@@ -37,7 +37,6 @@ namespace GoBabyGoV2.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
 
             /*WaitAndExecute(async () =>
             {
@@ -112,27 +111,18 @@ namespace GoBabyGoV2.Views
 
         #region BackButtonPress
 
-        protected override bool OnBackButtonPressed()
-        {
-            if (Device.RuntimePlatform.Equals(Device.Android) ||
-                Device.RuntimePlatform.Equals(Device.iOS))
-            {
-                OnClosePageRequested();
-                return true;
-            }
+        protected override bool OnBackButtonPressed() { return true; }
 
-            else
-            {
-                base.OnBackButtonPressed();
-                return false;
-            }
-        }
-
-        private async void OnClosePageRequested()
+        private async void OnExitRequested()
         {
             var result = await DisplayAlert("Wait", "Do You Want to Exit?", "Yes", "Cancel");
 
             if (result) await Navigation.PopAsync(true);
+        }
+
+        private void MenuItem_OnExitClicked(object sender, EventArgs e)
+        {
+            OnExitRequested();
         }
 
         #endregion

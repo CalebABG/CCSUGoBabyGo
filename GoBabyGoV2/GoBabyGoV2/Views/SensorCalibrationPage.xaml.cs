@@ -46,9 +46,6 @@ namespace GoBabyGoV2.Views
             }
         }
 
-        protected override bool OnBackButtonPressed()
-        {
-            return true;
-        }
+        protected override bool OnBackButtonPressed(){ return true; }
     }
 }

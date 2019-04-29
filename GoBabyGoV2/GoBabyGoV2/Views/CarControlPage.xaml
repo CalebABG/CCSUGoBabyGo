@@ -4,7 +4,6 @@
              xmlns:hottotem="clr-namespace:HotTotem.RoundedContentView;assembly=HotTotem.RoundedContentView"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="true"
-             NavigationPage.HasBackButton="False"
              Title="GoBabyGo Control"
              x:Class="GoBabyGoV2.Views.CarControlPage"
              xmlns:utilities="clr-namespace:GoBabyGoV2.Utilities"
@@ -20,7 +19,8 @@
     </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Calibrate Sensor" Order="Primary" Priority="0" Command="{Binding CalibrateSensorCommand}" />
+        <ToolbarItem Text="Exit" Order="Primary" Priority="0" Clicked="MenuItem_OnExitClicked" />
+        <ToolbarItem Text="Calibrate Sensor" Order="Primary" Priority="1" Command="{Binding CalibrateSensorCommand}" />
     </ContentPage.ToolbarItems>
 
     <!-- Padding/Margin Order: Left, Top, Right, Bottom -->
@@ -48,19 +48,25 @@
                         <StackLayout Orientation="Horizontal">
 
                             <Button Text="{StaticResource StopIcon}"
+                                    FontFamily="{StaticResource FontAwesomeSolid}"
                                     Command="{Binding StopIconCommand}"
                                     BackgroundColor="{StaticResource StopColor}"
-                                    Style="{StaticResource buttonStyle}"/>
+                                    Style="{StaticResource ButtonStyle}"
+                                    />
 
                             <Button Text="{StaticResource ShieldIcon}"
+                                    FontFamily="{StaticResource FontAwesomeSolid}"
                                     Command="{Binding ShieldIconCommand}"
                                     BackgroundColor="{Binding ParentalOverrideActive, Converter={StaticResource BoolToColorConverter}}"
-                                    Style="{StaticResource buttonStyle}"/>
+                                    Style="{StaticResource ButtonStyle}"
+                                    />
 
                             <Button Text="{StaticResource ReconnectIcon}" 
+                                    FontFamily="{StaticResource FontAwesomeSolid}"
                                     Command="{Binding ReconnectIconCommand}"
                                     BackgroundColor="{StaticResource ReconnectColor}"
-                                    Style="{StaticResource buttonStyle}"/>
+                                    Style="{StaticResource ButtonStyle}"
+                                    />
 
                         </StackLayout>
 
@@ -98,8 +104,7 @@
                                 <Label Text="{Binding IsCalcTicked, Converter={StaticResource BoolToStringConverter}}"
                                        FontSize="18" TextColor="White"/>
 
-                                <Switch IsToggled="{Binding IsCalcTicked, Mode=TwoWay}"
-                                        HeightRequest="30"/>
+                                <Switch IsToggled="{Binding IsCalcTicked}" HeightRequest="30"/>
 
                             </StackLayout>
 
@@ -107,8 +112,10 @@
 
                         <!-- Sensor Axis Grid -->
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
-                            <Button Text="{StaticResource AxisIcon}" 
-                                    Style="{StaticResource labelStyle}" />
+                            <Button Text="{StaticResource AxisIcon}"
+                                    FontFamily="{StaticResource FontAwesomeSolid}"
+                                    Style="{StaticResource LabelStyle}" 
+                                    />
 
                             <Grid RowSpacing="0" ColumnSpacing="0" 
                                   HorizontalOptions="FillAndExpand" VerticalOptions="Center">
@@ -122,19 +129,23 @@
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
 
-                                <Label Text="X:" TextColor="White" FontSize="18" 
-                                       Grid.Row="0" Grid.Column="0" HorizontalOptions="Start"/>
+                                <Label Grid.Row="0" Grid.Column="0"
+                                       Text="X:" TextColor="White" FontSize="18" 
+                                       HorizontalOptions="Start"/>
 
-                                <Label x:Name="accelXLabel" 
+                                <Label Grid.Row="0" Grid.Column="1"
+                                       x:Name="accelXLabel" 
                                        Text="0.00 G" TextColor="White" FontSize="18" 
-                                       Grid.Row="0" Grid.Column="1" HorizontalOptions="End"/>
+                                       HorizontalOptions="End"/>
 
-                                <Label Text="Y:" TextColor="White" FontSize="18" 
-                                       Grid.Row="1" Grid.Column="0" HorizontalOptions="Start"/>
+                                <Label Grid.Row="1" Grid.Column="0"
+                                       Text="Y:" TextColor="White" FontSize="18" 
+                                       HorizontalOptions="Start"/>
 
-                                <Label x:Name="accelYLabel" 
+                                <Label Grid.Row="1" Grid.Column="1"
+                                       x:Name="accelYLabel" 
                                        Text="0.00 G" TextColor="White" FontSize="18" 
-                                       Grid.Row="1" Grid.Column="1" HorizontalOptions="End"/>
+                                       HorizontalOptions="End"/>
 
                             </Grid>
 
@@ -174,8 +185,9 @@
                                 </Grid.RowDefinitions>
 
                                 <Button Grid.Row="0" Grid.Column="0" 
-                                        Text="{StaticResource BluetoothIcon}" 
-                                        Style="{StaticResource labelStyle}"
+                                        Text="{StaticResource BluetoothIcon}"
+                                        FontFamily="{StaticResource FontAwesomeBrands}"
+                                        Style="{StaticResource LabelStyle}"
                                         WidthRequest="30" />
 
                                 <Label Grid.Row="0" Grid.Column="1" 
@@ -186,13 +198,15 @@
 
                                 <Button Grid.Row="0" Grid.Column="2" 
                                         Text="{StaticResource PowerIcon}" 
+                                        Command="{Binding DisconnectIconCommand}"
                                         WidthRequest="40" HeightRequest="40"
                                         HorizontalOptions="End"
                                         VerticalOptions="Center"
                                         Padding="0" Margin="0"
                                         CornerRadius="25"
                                         FontSize="20" 
-                                        Style="{StaticResource buttonStyle}"
+                                        FontFamily="{StaticResource FontAwesomeSolid}"
+                                        Style="{StaticResource ButtonStyle}"
                                         TextColor="Black" BackgroundColor="#F0F0F0" />
 
                             </Grid>

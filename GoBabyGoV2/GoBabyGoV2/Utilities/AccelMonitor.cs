@@ -56,10 +56,7 @@ namespace GoBabyGoV2.Utilities
         /// </summary>
         public static void StartAccelMonitor()
         {
-            if (Accelerometer.IsMonitoring == false)
-            {
-                Accelerometer.Start(SensorSpeed);
-            }
+            if (Accelerometer.IsMonitoring == false) Accelerometer.Start(SensorSpeed);
         }
 
         /// <summary>
