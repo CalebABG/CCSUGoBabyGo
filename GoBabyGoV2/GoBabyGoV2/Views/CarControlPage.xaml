@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:hottotem="clr-namespace:HotTotem.RoundedContentView;assembly=HotTotem.RoundedContentView"
@@ -49,6 +49,7 @@
                         <StackLayout Orientation="Horizontal">
 
                             <Button Text="{StaticResource StopIcon}"
+                                    TextColor="Black"
                                     FontFamily="{StaticResource FontAwesomeSolid}"
                                     Command="{Binding StopIconCommand}"
                                     BackgroundColor="{StaticResource StopColor}"
@@ -56,6 +57,7 @@
                                     />
 
                             <Button Text="{StaticResource ShieldIcon}"
+                                    TextColor="Black"
                                     FontFamily="{StaticResource FontAwesomeSolid}"
                                     Command="{Binding ShieldIconCommand}"
                                     BackgroundColor="{Binding ParentalOverrideActive, Converter={StaticResource BoolToColorConverter}}"
@@ -63,6 +65,7 @@
                                     />
 
                             <Button Text="{StaticResource ReconnectIcon}" 
+                                    TextColor="Black"
                                     FontFamily="{StaticResource FontAwesomeSolid}"
                                     Command="{Binding ReconnectIconCommand}"
                                     BackgroundColor="{StaticResource ReconnectColor}"
@@ -85,10 +88,10 @@
                                  Padding="8"
                                  VerticalOptions="Center">
 
-                        <Grid>
+                        <Grid ColumnSpacing="12">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -177,27 +180,27 @@
                                   VerticalOptions="Center">
 
                                 <Grid.ColumnDefinitions>
+<!--                                    <ColumnDefinition Width="*"/>-->
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
 
-                                <Button Grid.Row="0" Grid.Column="0" 
+                                <!--<Button Grid.Row="0" Grid.Column="0" 
                                         Text="{StaticResource BluetoothIcon}"
                                         FontFamily="{StaticResource FontAwesomeBrands}"
-                                        Style="{StaticResource LabelStyle}"
-                                        WidthRequest="30" />
+                                        Style="{StaticResource ButtonStyle}"
+                                        WidthRequest="30" />-->
 
-                                <Label Grid.Row="0" Grid.Column="1" 
+                                <Label Grid.Row="0" Grid.Column="0" 
                                        Text="Disconnected" TextColor="White" 
                                        FontSize="18" 
                                        HorizontalOptions="Start" 
                                        VerticalOptions="Center"/>
 
-                                <Button Grid.Row="0" Grid.Column="2" 
+                                <Button Grid.Row="0" Grid.Column="1" 
                                         Text="{StaticResource PowerIcon}" 
                                         Command="{Binding DisconnectIconCommand}"
                                         WidthRequest="40" HeightRequest="40"
