@@ -26,8 +26,13 @@ namespace GoBabyGoV2.Views
 
             AddAccelerometerCallback(CarControlAccelerometerReadingChanged);
 
-            if (!Device.RuntimePlatform.Equals(Device.iOS))
-                StartAccelMonitor();
+            // the only time I don't want the accelerometer to start is if it's in
+            // the emulator and it's iOS
+            if (DependencyService.Get<IEmulatorDetect>().IsRunningInEmulator() && Device.RuntimePlatform == Device.iOS)
+            {
+                Console.WriteLine("Not starting Accelerometer b/c will crash");
+            }
+            else { StartAccelMonitor(); }
         }
 
         #endregion
@@ -90,7 +95,6 @@ namespace GoBabyGoV2.Views
                 }
 
                 if (((CarControlViewModel) BindingContext).IsCalcTicked)
-//                if (ControlViewModel.IsCalcTicked)
                 {
                     accelXLabel.Text = $"{calcAccelX}";
                     accelYLabel.Text = $"{calcAccelY}";
@@ -116,7 +120,6 @@ namespace GoBabyGoV2.Views
         private async void OnExitRequested()
         {
             var result = await DisplayAlert("Wait", "Do You Want to Exit?", "Yes", "Cancel");
-
             if (result) await Navigation.PopAsync(true);
         }
 

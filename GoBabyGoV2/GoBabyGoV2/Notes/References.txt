@@ -47,3 +47,7 @@ Toast Notifications:
 
 	Dependency Service:
 		- https://docs.microsoft.com/en-us/xamarin/xamarin-forms/app-fundamentals/dependency-service/introduction
+        
+        
+Running in Emulator Check:
+    - https://bykov.tech/2015/08/30/detect-in-xamarin-forms-if-the-app-is-running-in-simulator-or-on-real-device/

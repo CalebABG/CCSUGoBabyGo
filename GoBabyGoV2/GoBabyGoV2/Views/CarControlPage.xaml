@@ -37,9 +37,10 @@
                          Margin="8,8,0,8">
 
                 <!-- First Card View: Buttons -->
-                <hottotem:RoundedContentView Padding="10"
-                                             CornerRadius="8" 
-                                             FillColor="{StaticResource ColorPrimary}">
+                <Frame Padding="5"
+                       HasShadow="false"
+                       CornerRadius="8"
+                       BackgroundColor="{StaticResource ColorPrimary}">
 
                     <StackLayout Orientation="Vertical"
                                  Padding="8"
@@ -76,13 +77,14 @@
 
                     </StackLayout>
 
-                </hottotem:RoundedContentView>
+                </Frame>
 
 
                 <!-- Second Card View: Sensor Info -->
-                <hottotem:RoundedContentView Padding="10"
-                                             CornerRadius="8" 
-                                             FillColor="{StaticResource ColorPrimary}">
+                <Frame Padding="5"
+                       HasShadow="false"
+                       BackgroundColor="{StaticResource ColorPrimary}"
+                       CornerRadius="8">
 
                     <StackLayout Orientation="Vertical"
                                  Padding="8"
@@ -157,13 +159,14 @@
 
                     </StackLayout>
 
-                </hottotem:RoundedContentView>
+                </Frame>
 
 
                 <!-- Third Card View: Sensor Info -->
-                <hottotem:RoundedContentView Padding="10"
-                                             CornerRadius="8" 
-                                             FillColor="{StaticResource ColorPrimary}">
+                <Frame Padding="5"
+                       CornerRadius="8" 
+                       HasShadow="false"
+                       BackgroundColor="{StaticResource ColorPrimary}">
 
                     <StackLayout Orientation="Vertical"
                                  Padding="8"
@@ -219,29 +222,30 @@
 
                     </StackLayout>
 
-                </hottotem:RoundedContentView>
+                </Frame>
 
             </StackLayout>
 
 
             <!-- Second Pane -->
-            <hottotem:RoundedContentView VerticalOptions="FillAndExpand" 
-                                         HorizontalOptions="FillAndExpand" 
-                                         Margin="0,8,8,8"
-                                         CornerRadius="8" 
-                                         FillColor="{StaticResource ColorPrimary}">
+            <Frame VerticalOptions="FillAndExpand" 
+                   HorizontalOptions="FillAndExpand" 
+                   Margin="0,8,8,8"
+                   CornerRadius="8"
+                   HasShadow="false"
+                   BackgroundColor="{StaticResource ColorPrimary}">
 
-                <StackLayout Orientation="Vertical" Padding="8">
+                <StackLayout Orientation="Vertical">
 
                     <Button Text="Send Packet"
-                            FontSize="Medium"
+                            FontSize="18"
                             BackgroundColor="#EEEEEE"
                             TextColor="#272727"
                             HorizontalOptions="Fill" />
 
                 </StackLayout>
 
-            </hottotem:RoundedContentView>
+            </Frame>
 
         </StackLayout>
 
