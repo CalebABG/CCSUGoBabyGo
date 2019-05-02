@@ -10,6 +10,16 @@ namespace GoBabyGoV2
     {
         /*
          * Build Info:
+         * 
+         * iOS Build Info:
+         * 
+         * -         
+         *         
+         * Bundle Signing:
+         * Use Manual Provisioning(Info.plist):
+         *  // identifier is tied to test Xcode app (expires May 8 2019)
+            // Xcode app uses Automatic signing (Personal Team)
+         *  - Bundle Identifier: com.cab.test1
          *
          * When building, for Xamarin Previewer to work properly, comment out the 'HotReloader.Current.Start(this);'
          * line. For some reason the previewer throws a resource in use error.

@@ -24,7 +24,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>GoBabyGoBT</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.calebabg.GoBabyGoV2</string>
+	<string>com.cab.test1</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>UILaunchStoryboardName</key>
@@ -35,9 +35,11 @@
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>UIAppFonts</key>
 	<array>
-    <string>FontAwesome5BrandsRegular.otf</string>
-    <string>FontAwesome5Regular.otf</string>
-    <string>FontAwesome5Solid.otf</string>
+		<string>FontAwesome5BrandsRegular.otf</string>
+		<string>FontAwesome5Regular.otf</string>
+		<string>FontAwesome5Solid.otf</string>
 	</array>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
 </dict>
 </plist>
