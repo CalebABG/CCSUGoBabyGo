@@ -38,6 +38,10 @@ namespace GoBabyGoV2
             #endif
 
             MainPage = new NavigationPage(new CarWelcomePage());
+
+            // Set Status bar Color (Specifically for iOS)
+            MainPage.SetValue(NavigationPage.BarTextColorProperty, Color.White);
+            MainPage.SetValue(NavigationPage.BarBackgroundColorProperty, Application.Current.Resources["StatusbarPrimary"]);
         }
 
         protected override void OnStart()

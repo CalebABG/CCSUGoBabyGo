@@ -24,6 +24,7 @@
             <!-- Static Colors -->
             <Color x:Key="ColorPrimary">#369cd9</Color>
             <Color x:Key="ColorAccent">#3339c5</Color>
+            <Color x:Key="StatusbarPrimary">#1976D2</Color>
             <Color x:Key="StopColor">#ff44</Color>
             <Color x:Key="ReconnectColor">#FF008EBB</Color>
             <Color x:Key="ShieldColorActive">#FF32A341</Color>

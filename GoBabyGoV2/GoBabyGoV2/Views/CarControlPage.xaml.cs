@@ -24,8 +24,6 @@ namespace GoBabyGoV2.Views
         {
             InitializeComponent();
 
-            Application.Current.MainPage.SetValue(NavigationPage.BarBackgroundColorProperty, Color.Blue);
-
             AddAccelerometerCallback(CarControlAccelerometerReadingChanged);
 
             // the only time I don't want the accelerometer to start is if it's in
