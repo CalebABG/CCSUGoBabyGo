@@ -24,6 +24,8 @@ namespace GoBabyGoV2.Views
         {
             InitializeComponent();
 
+            Application.Current.MainPage.SetValue(NavigationPage.BarBackgroundColorProperty, Color.Blue);
+
             AddAccelerometerCallback(CarControlAccelerometerReadingChanged);
 
             // the only time I don't want the accelerometer to start is if it's in
@@ -42,31 +44,11 @@ namespace GoBabyGoV2.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            /*WaitAndExecute(async () =>
-            {
-                await Task.Delay(1500);
-                DependencyService.Get<IToast>().ShortAlert("Welcome");
-            });*/
         }
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-
-            /*try
-            {
-                AccelMonitor.StopAccelMonitor();
-
-                // Unsub from reading changed
-                Accelerometer.ReadingChanged -= CarControlAccelerometerReadingChanged;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }*/
-            // Xamarin.Forms.DependencyService.Get<IToast>().ShortAlert("RemovedAccelC");
         }
 
         #endregion
