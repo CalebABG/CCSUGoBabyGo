@@ -28,8 +28,6 @@
 	<string>1.0</string>
 	<key>CFBundleName</key>
 	<string>GoBabyGoV2</string>
-	<key>XSAppIconAssets</key>
-	<string>Assets.xcassets/AppIcon2.appiconset</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>FontAwesome5BrandsRegular.otf</string>
@@ -38,6 +36,8 @@
 	</array>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
+	<key>XSAppIconAssets</key>
+	<string>Assets.xcassets/AppIcon2.appiconset</string>
 	<key>XSLaunchImageAssets</key>
 	<string>Assets.xcassets/LaunchImages.launchimage</string>
 </dict>
