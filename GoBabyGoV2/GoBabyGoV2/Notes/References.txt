@@ -51,3 +51,13 @@ Toast Notifications:
         
 Running in Emulator Check:
     - https://bykov.tech/2015/08/30/detect-in-xamarin-forms-if-the-app-is-running-in-simulator-or-on-real-device/
+
+
+VectorDrawable to SVG:
+	- https://github.com/RohanTalip/VectorDrawable2Svg
+
+App Icon Resizer (Android, iOS):
+	- https://appiconmaker.co/Home/Index/5402d49b-4e80-498d-8192-677c734d6b00
+
+App Launch Images:
+	- https://apetools.webprofusion.com/#/tools/imagegorilla
