@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace GoBabyGoV2.Utilities
 {
-    public class AccelMonitor
+    public static class AccelMonitor
     {
         // Set of method references (event handlers) for Accelerometer changes
         public static HashSet<EventHandler<AccelerometerChangedEventArgs>> AccelerometerChangedEvents 
