@@ -20,7 +20,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width=".6*"/>
+                <ColumnDefinition Width=".4*"/>
                 <ColumnDefinition Width=".4*"/>
             </Grid.ColumnDefinitions>
 
@@ -51,7 +51,6 @@
                         HorizontalOptions="Center"/>
 
             </StackLayout>
-
 
         </Grid>
 
