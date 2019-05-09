@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
              xmlns:local="clr-namespace:GoBabyGoV2.ViewModels"
              xmlns:utilities="clr-namespace:GoBabyGoV2.Utilities"
              ios:Page.UseSafeArea="true"
@@ -31,10 +32,18 @@
                    HorizontalTextAlignment="Center"
                    HorizontalOptions="Center" FontSize="18" TextColor="Black"/>
 
+            <input:RadioButtonGroupView HorizontalOptions="Center" Orientation="Horizontal" Spacing="15" Margin="0,10,0,0" SelectedItemChanged="RadioButtonGroupView_OnSelectedItemChanged">
+
+                <input:RadioButton Text="Un-Freeze" TextColor="Black" IsChecked="True" Value="unfreeze"/>
+                <input:RadioButton Text="Freeze X" TextColor="Black" Value="freezex"/>
+                <input:RadioButton Text="Freeze Y" TextColor="Black" Value="freezey"/>
+
+            </input:RadioButtonGroupView>
+
             <StackLayout Orientation="Horizontal" HeightRequest="160" HorizontalOptions="Center" >
 
                 <Grid VerticalOptions="Center" 
-                      BindingContext="{x:Static utilities:AccelMonitor.AccelCalib}">
+                      BindingContext="{x:Static utilities:AccelerometerMonitor.Calibration}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -46,25 +55,25 @@
 
                     <Label x:Name="accelMinXLabel" 
                            Grid.Row="0" Grid.Column="0"
-                           Text="{Binding AccelMinX, StringFormat='Min X: {0:F2}'}"
+                           Text="{Binding MinX, StringFormat='Min X: {0:F2}'}"
                            TextColor="Black"
                            FontSize="22" Margin="0,0,55,0"/>
 
                     <Label x:Name="accelMaxXLabel" 
                            Grid.Row="0" Grid.Column="1" 
-                           Text="{Binding AccelMaxX, StringFormat='Max X: {0:F2}'}" 
+                           Text="{Binding MaxX, StringFormat='Max X: {0:F2}'}" 
                            TextColor="Black"
                            FontSize="22"/>
 
                     <Label x:Name="accelMinYLabel" 
                            Grid.Row="1" Grid.Column="0" 
-                           Text="{Binding AccelMinY, StringFormat=' Min Y: {0:F2}'}" 
+                           Text="{Binding MinY, StringFormat=' Min Y: {0:F2}'}" 
                            TextColor="Black"
                            FontSize="22" Margin="0,0,55,0"/>
 
                     <Label x:Name="accelMaxYLabel" 
                            Grid.Row="1" Grid.Column="1" 
-                           Text="{Binding AccelMaxY, StringFormat='Max Y: {0:F2}'}" 
+                           Text="{Binding MaxY, StringFormat='Max Y: {0:F2}'}" 
                            TextColor="Black"
                            FontSize="22"/>
 

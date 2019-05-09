@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace GoBabyGoV2.Utilities
 {
-    public static class AccelMonitor
+    public static class AccelerometerMonitor
     {
         // Set of method references (event handlers) for Accelerometer changes
         public static HashSet<EventHandler<AccelerometerChangedEventArgs>> AccelerometerChangedEvents 
@@ -19,13 +19,17 @@ namespace GoBabyGoV2.Utilities
         // Set speed delay for monitoring changes. 
         public static SensorSpeed SensorSpeed { get; } = SensorSpeed.Game;
 
-        // Default sensor calibration values for X and Y (from OnePlus 6T Min/Max X and Y values)
-        public static readonly float[] AccelCalibDefault = { 0.0f, 0.0f, 0.0f, 0.0f };
-        //public static readonly float[] AccelCalibDefault = { -0.86f, 1.17f, -1.03f, 1.01f };
+        // Axis to freeze when calibrating
+        public static string CalibrationFreezeAxis = String.Empty;
 
+        // Default sensor calibration values for X and Y (from OnePlus 6T Min/Max X and Y values)
+        //public static readonly float[] DefaultCalibration = { -0.86f, 1.17f, -1.03f, 1.01f };
+
+        public static readonly float[] DefaultCalibration = { -1f, 1f,
+                                                              -1f, 1f };
 
         // Static Property for Xaml binding to get/set sensor calibration values
-        public static AccelCalibObj AccelCalib = new AccelCalibObj();
+        public static AccelerometerCalibration Calibration = new AccelerometerCalibration(-1,1,-1,1);
 
         /// <summary>
         /// This method will add the given event handler to the <see cref="AccelerometerChangedEvents"/>
@@ -56,7 +60,7 @@ namespace GoBabyGoV2.Utilities
         /// Please make sure that either an existing callback/event handler for the Accelerometer has been added
         /// <see cref="Accelerometer.ReadingChanged"/>
         /// </summary>
-        public static void StartAccelMonitor()
+        public static void StartMonitoring()
         {
             if (Accelerometer.IsMonitoring == false) Accelerometer.Start(SensorSpeed);
         }
@@ -66,7 +70,7 @@ namespace GoBabyGoV2.Utilities
         /// This will stop the service and attempt to unsubscribe any event handlers that are in the <see cref="AccelerometerChangedEvents"/>
         /// set. If successful, it will also clear the set.
         /// </summary>
-        public static void StopAccelMonitor()
+        public static void StopMonitoring()
         {
             if (!Accelerometer.IsMonitoring) return;
 

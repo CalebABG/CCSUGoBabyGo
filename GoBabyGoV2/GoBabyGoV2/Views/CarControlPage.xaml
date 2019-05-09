@@ -141,7 +141,7 @@
                                        HorizontalOptions="Start"/>
 
                                     <Label Grid.Row="0" Grid.Column="1"
-                                       x:Name="accelXLabel" 
+                                       x:Name="AccelXLabel" 
                                        Text="0.00 G" TextColor="White" FontSize="18" 
                                        HorizontalOptions="End"/>
 
@@ -150,7 +150,7 @@
                                        HorizontalOptions="Start"/>
 
                                     <Label Grid.Row="1" Grid.Column="1"
-                                       x:Name="accelYLabel" 
+                                       x:Name="AccelYLabel" 
                                        Text="0.00 G" TextColor="White" FontSize="18" 
                                        HorizontalOptions="End"/>
 

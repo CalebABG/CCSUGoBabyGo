@@ -53,7 +53,7 @@ namespace GoBabyGoV2
         protected override void OnSleep()
         {
             // Handle when your app sleeps
-//            AccelMonitor.StopAccelMonitor();
+//            AccelerometerMonitor.StopMonitoring();
         }
 
         protected override void OnResume()

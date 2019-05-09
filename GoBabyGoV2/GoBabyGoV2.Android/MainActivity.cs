@@ -24,6 +24,8 @@ namespace GoBabyGoV2.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
+            Plugin.InputKit.Platforms.Droid.Config.Init(this, savedInstanceState);
+
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
 
             LoadApplication(new App());

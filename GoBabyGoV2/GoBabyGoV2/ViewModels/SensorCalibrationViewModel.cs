@@ -20,6 +20,18 @@ namespace GoBabyGoV2.ViewModels
 
         #endregion
 
+        void UpdateCalibrationAxisX(float accelX)
+        {
+            AccelerometerMonitor.Calibration.MinX = accelX;
+            AccelerometerMonitor.Calibration.MaxX = accelX;
+        }
+
+        void UpdateCalibrationAxisY(float accelY)
+        {
+            AccelerometerMonitor.Calibration.MinY = accelY;
+            AccelerometerMonitor.Calibration.MaxY = accelY;
+        }
+
         public SensorCalibrationViewModel()
         {
             #region SetupCommands
@@ -28,21 +40,22 @@ namespace GoBabyGoV2.ViewModels
 
             SetDefaultCalibrationCommand = new Command(() =>
             {
-                AccelMonitor.AccelCalib.AccelMinX = AccelMonitor.AccelCalibDefault[0];
-                AccelMonitor.AccelCalib.AccelMaxX = AccelMonitor.AccelCalibDefault[1];
-                AccelMonitor.AccelCalib.AccelMinY = AccelMonitor.AccelCalibDefault[2];
-                AccelMonitor.AccelCalib.AccelMaxY = AccelMonitor.AccelCalibDefault[3];
+                AccelerometerMonitor.Calibration.MinX = AccelerometerMonitor.DefaultCalibration[0];
+                AccelerometerMonitor.Calibration.MaxX = AccelerometerMonitor.DefaultCalibration[1];
 
-                if (DoneButtonCommand.CanExecute(null))
-                    DoneButtonCommand.Execute(null);
+                AccelerometerMonitor.Calibration.MinY = AccelerometerMonitor.DefaultCalibration[2];
+                AccelerometerMonitor.Calibration.MaxY = AccelerometerMonitor.DefaultCalibration[3];
             });
 
             ResetCalibrationCommand = new Command(() =>
             {
-                AccelMonitor.AccelCalib.AccelMinX = 0.0f;
-                AccelMonitor.AccelCalib.AccelMaxX = 0.0f;
-                AccelMonitor.AccelCalib.AccelMinY = 0.0f;
-                AccelMonitor.AccelCalib.AccelMaxY = 0.0f;
+                if (AccelerometerMonitor.CalibrationFreezeAxis.Equals("freezex")) UpdateCalibrationAxisY(0f);
+                else if (AccelerometerMonitor.CalibrationFreezeAxis.Equals("freezey")) UpdateCalibrationAxisX(0f);
+                else
+                {
+                    UpdateCalibrationAxisX(0f);
+                    UpdateCalibrationAxisY(0f);
+                }
             });
 
             #endregion
