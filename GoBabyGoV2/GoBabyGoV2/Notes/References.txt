@@ -61,3 +61,6 @@ App Icon Resizer (Android, iOS):
 
 App Launch Images:
 	- https://apetools.webprofusion.com/#/tools/imagegorilla
+    
+Bubble Accelerometer Calibration:
+    - https://f-droid.org/en/packages/net.androgames.level/

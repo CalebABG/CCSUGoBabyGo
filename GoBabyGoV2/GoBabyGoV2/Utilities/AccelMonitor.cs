@@ -20,7 +20,9 @@ namespace GoBabyGoV2.Utilities
         public static SensorSpeed SensorSpeed { get; } = SensorSpeed.Game;
 
         // Default sensor calibration values for X and Y (from OnePlus 6T Min/Max X and Y values)
-        public static readonly float[] AccelCalibDefault = { -0.86f, 1.17f, -1.03f, 1.01f };
+        public static readonly float[] AccelCalibDefault = { 0.0f, 0.0f, 0.0f, 0.0f };
+        //public static readonly float[] AccelCalibDefault = { -0.86f, 1.17f, -1.03f, 1.01f };
+
 
         // Static Property for Xaml binding to get/set sensor calibration values
         public static AccelCalibObj AccelCalib = new AccelCalibObj();
