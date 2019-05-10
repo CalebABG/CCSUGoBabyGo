@@ -39,8 +39,9 @@ namespace GoBabyGoV2.Views
             // Set the accelerometer change event in Monitor
             AccelerometerMonitor.SetAccelerometerChangeEvent(CarControlAccelerometerReadingChanged);
 
-            // Debug X bias for OnePlus 6T
-            AccelerometerMonitor.Calibration.BiasX = 0.15f;
+            // Debug X bias for OnePlus 6T (Model A6013)
+            if (DeviceInfo.Model.ToLower().Contains("a6013"))
+                AccelerometerMonitor.Calibration.BiasX = 0.15f;
             
             // The only time I don't want the accelerometer to start is if it's in
             // the emulator and it's iOS

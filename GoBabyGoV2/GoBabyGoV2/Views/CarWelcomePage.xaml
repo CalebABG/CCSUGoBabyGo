@@ -20,7 +20,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width=".4*"/>
+                <ColumnDefinition Width=".5*"/>
                 <ColumnDefinition Width=".4*"/>
             </Grid.ColumnDefinitions>
 
@@ -32,13 +32,13 @@
                          Orientation="Vertical"
                          VerticalOptions="CenterAndExpand" Margin="0,0,6,0">
 
-                <Label Text="Drivers, Start Your Engines!" 
+                <Label Text="Start Your Engines!" 
                        HorizontalTextAlignment="Center"
                        HorizontalOptions="Center"
                        TextColor="White" FontSize="30" FontAttributes="Bold"
                        Margin="0,20"/>
 
-                <Label Text="Welcome to the GoBabyGo RC Car App" 
+                <Label Text="Welcome to the GoBabyGo Car App" 
                        HorizontalTextAlignment="Center"
                        HorizontalOptions="Center"
                        TextColor="White" FontSize="20"/>
