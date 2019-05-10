@@ -11,7 +11,7 @@ using Xamarin.Forms;
 
 namespace GoBabyGoV2.ViewModels
 {
-    public class SensorCalibrationViewModel : IAccelerometerCalibrationChanged
+    public class AccelerometerCalibrationViewModel : IAccelerometerCalibrationChanged
     {
         #region Properties
 
@@ -25,7 +25,7 @@ namespace GoBabyGoV2.ViewModels
 
         #region Ctor
 
-        public SensorCalibrationViewModel()
+        public AccelerometerCalibrationViewModel()
         {
             #region SetupCommands
 

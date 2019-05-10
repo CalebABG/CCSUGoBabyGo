@@ -13,11 +13,11 @@ using Xamarin.Forms.Xaml;
 namespace GoBabyGoV2.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SensorCalibrationPage : ContentPage
+    public partial class AccelerometerCalibrationPage : ContentPage
     {
         #region Ctor
 
-        public SensorCalibrationPage()
+        public AccelerometerCalibrationPage()
         {
             InitializeComponent();
         }

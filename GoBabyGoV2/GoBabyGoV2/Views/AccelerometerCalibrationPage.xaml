@@ -7,11 +7,11 @@
              xmlns:sensors="clr-namespace:GoBabyGoV2.Views"
              xmlns:utilities="clr-namespace:GoBabyGoV2.Utilities"
              ios:Page.UseSafeArea="true"
-             x:Class="GoBabyGoV2.Views.SensorCalibrationPage"
+             x:Class="GoBabyGoV2.Views.AccelerometerCalibrationPage"
              BackgroundColor="White">
 
     <ContentPage.BindingContext>
-        <local:SensorCalibrationViewModel/>
+        <local:AccelerometerCalibrationViewModel/>
     </ContentPage.BindingContext>
 
     <ContentPage.Resources>
