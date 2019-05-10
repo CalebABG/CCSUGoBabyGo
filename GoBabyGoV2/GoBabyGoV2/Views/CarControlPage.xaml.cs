@@ -80,8 +80,11 @@ namespace GoBabyGoV2.Views
             var accelY = data.Acceleration.Y - AccelerometerMonitor.Calibration.BiasY;
 
             // Process Acceleration X and Y (Xamarin Essentials outputs in g-force units)
-            uint calcAccelX = (uint) Map(accelX, AccelerometerMonitor.Calibration.MinX, AccelerometerMonitor.Calibration.MaxX, 255.0f, 0.0f);
-            uint calcAccelY = (uint) Map(accelY, AccelerometerMonitor.Calibration.MinY, AccelerometerMonitor.Calibration.MaxY, 255.0f, 0.0f);
+            uint calcAccelX = (uint) Map(accelX, AccelerometerMonitor.Calibration.MinX, 
+                                                      AccelerometerMonitor.Calibration.MaxX, 255.0f, 0.0f);
+
+            uint calcAccelY = (uint) Map(accelY, AccelerometerMonitor.Calibration.MinY, 
+                                                      AccelerometerMonitor.Calibration.MaxY, 255.0f, 0.0f);
 
             MainThread.BeginInvokeOnMainThread(() =>
             {

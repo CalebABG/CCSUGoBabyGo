@@ -44,7 +44,7 @@ namespace GoBabyGoV2
 
             // Set Status bar Color (Specifically for iOS)
             MainPage.SetValue(NavigationPage.BarTextColorProperty, Color.White);
-            MainPage.SetValue(NavigationPage.BarBackgroundColorProperty, Application.Current.Resources["StatusbarPrimary"]);
+            MainPage.SetValue(NavigationPage.BarBackgroundColorProperty, Resources["StatusBarPrimary"]);
         }
 
         protected override void OnStart()
