@@ -1,6 +1,7 @@
 ﻿using GoBabyGoV2.Utilities;
 using GoBabyGoV2.Views;
 using System;
+using System.Diagnostics;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -34,7 +35,9 @@ namespace GoBabyGoV2
             InitializeComponent();
 
             #if DEBUG
+            
             // HotReloader.Current.Start(this);
+
             #endif
 
             MainPage = new NavigationPage(new CarWelcomePage());
@@ -53,13 +56,15 @@ namespace GoBabyGoV2
         protected override void OnSleep()
         {
             // Handle when your app sleeps
-//            AccelerometerMonitor.StopMonitoring();
+            if (CarControlPage.AccelerometerMonitor != null)
+                CarControlPage.AccelerometerMonitor.StopMonitoring();
         }
 
         protected override void OnResume()
         {
             // Handle when your app resumes
-
+            if (CarControlPage.AccelerometerMonitor != null)
+                CarControlPage.AccelerometerMonitor.StartMonitoring();
         }
     }
 }

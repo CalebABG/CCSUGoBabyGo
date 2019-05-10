@@ -10,49 +10,41 @@ using Xamarin.Forms;
 
 namespace GoBabyGoV2.Utilities
 {
-    public static class AccelerometerMonitor
+    public class AccelerometerMonitor : IDisposable
     {
-        // Set of method references (event handlers) for Accelerometer changes
-        public static HashSet<EventHandler<AccelerometerChangedEventArgs>> AccelerometerChangedEvents 
-            = new HashSet<EventHandler<AccelerometerChangedEventArgs>>();
+        #region StaticProperties
 
-        // Set speed delay for monitoring changes. 
+        // Set speed delay for monitoring changes. Only set from this class
         public static SensorSpeed SensorSpeed { get; } = SensorSpeed.Game;
 
-        // Axis to freeze when calibrating
-        public static string CalibrationFreezeAxis = String.Empty;
-
         // Default sensor calibration values for X and Y (from OnePlus 6T Min/Max X and Y values)
-        //public static readonly float[] DefaultCalibration = { -0.86f, 1.17f, -1.03f, 1.01f };
+        public static float[] DefaultCalibration { get; } = { -1f, 1f, -1f, 1f };
 
-        public static readonly float[] DefaultCalibration = { -1f, 1f,
-                                                              -1f, 1f };
+        // Axis to freeze when calibrating
+        public static CalibrationFreeze CalibrationFreezeAxis { get; set; } = CalibrationFreeze.None;
 
-        // Static Property for Xaml binding to get/set sensor calibration values
-        public static AccelerometerCalibration Calibration = new AccelerometerCalibration(-1,1,-1,1);
+        public static bool ShouldCalibrate { get; set; }
 
-        /// <summary>
-        /// This method will add the given event handler to the <see cref="AccelerometerChangedEvents"/>
-        /// set to keep a reference, if it is not null. Also, if the event isn't null, it will be added to the
-        /// <see cref="Accelerometer.ReadingChanged"/>'s event handler; first removing it to handle the possibility of
-        /// duplicate subscriptions.
-        /// </summary>
-        /// <param name="accelEventHandler"></param>
-        public static void AddAccelerometerCallback(EventHandler<AccelerometerChangedEventArgs> accelEventHandler)
+        #endregion
+
+        #region PublicProperties
+
+        // Set of method references (event handlers) for Accelerometer changes
+        public event EventHandler<AccelerometerChangedEventArgs> AccelerometerChangedEvent;
+
+        // Property for Xaml binding to get/set sensor calibration values
+        public AccelerometerCalibration Calibration { get; set; } = new AccelerometerCalibration(-1, 1, -1, 1);
+
+        #endregion
+
+        #region Methods
+
+        public void SetAccelerometerChangeEvent(EventHandler<AccelerometerChangedEventArgs> accelerometerChangedEvent = null)
         {
-            if (accelEventHandler == null) return;
+            if (accelerometerChangedEvent == null) return;
 
-            AccelerometerChangedEvents.Add(accelEventHandler);
-
-            try
-            {
-                Accelerometer.ReadingChanged -= accelEventHandler;
-                Accelerometer.ReadingChanged += accelEventHandler;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+            AccelerometerChangedEvent += accelerometerChangedEvent;
+            Accelerometer.ReadingChanged += AccelerometerChangedEvent;
         }
 
         /// <summary>
@@ -60,7 +52,7 @@ namespace GoBabyGoV2.Utilities
         /// Please make sure that either an existing callback/event handler for the Accelerometer has been added
         /// <see cref="Accelerometer.ReadingChanged"/>
         /// </summary>
-        public static void StartMonitoring()
+        public void StartMonitoring()
         {
             if (Accelerometer.IsMonitoring == false) Accelerometer.Start(SensorSpeed);
         }
@@ -70,48 +62,31 @@ namespace GoBabyGoV2.Utilities
         /// This will stop the service and attempt to unsubscribe any event handlers that are in the <see cref="AccelerometerChangedEvents"/>
         /// set. If successful, it will also clear the set.
         /// </summary>
-        public static void StopMonitoring()
+        public void StopMonitoring()
         {
-            if (!Accelerometer.IsMonitoring) return;
+            if (Accelerometer.IsMonitoring == true) Accelerometer.Stop();
+        }
 
-            Accelerometer.Stop();
+        #endregion
 
-            try
+        #region OnDispose
+
+        public void Dispose()
+        {
+            if (AccelerometerChangedEvent == null) return;
+
+            // Remove event-handler from Accelerometer.ReadingChanged event
+            Accelerometer.ReadingChanged -= AccelerometerChangedEvent;
+
+            // Remove all event-handlers from AccelerometerChangedEvent
+            foreach (var _delegate in AccelerometerChangedEvent.GetInvocationList())
             {
-                if (!AccelerometerChangedEvents.Any()) return;
-
-                foreach (var accelerometerChangedEvent in AccelerometerChangedEvents)
-                    Accelerometer.ReadingChanged -= accelerometerChangedEvent;
-
-                AccelerometerChangedEvents.Clear();
+                if (_delegate != null && 
+                    _delegate is EventHandler<AccelerometerChangedEventArgs> accelEventHandler)
+                {
+                    AccelerometerChangedEvent -= accelEventHandler;
+                }
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-        }
-
-        #region UtilityFunctions
-        public static byte[] IntToBytes(int val)
-        {
-            byte[] b = new byte[4];
-
-            b[0] = (byte)val;
-            b[1] = (byte)(((uint)val >> 8) & 0xFF);
-            b[2] = (byte)(((uint)val >> 16) & 0xFF);
-            b[3] = (byte)(((uint)val >> 24) & 0xFF);
-
-            return b;
-        }
-
-        public static double Constrain(double amt, double low, double high)
-        {
-            return (amt) < (low) ? (low) : (amt) > (high) ? (high) : (amt);
-        }
-
-        public static double Map(double value, double min1, double max1, double min2, double max2)
-        {
-            return min2 + (max2 - min2) * ((value - min1) / (max1 - min1));
         }
 
         #endregion

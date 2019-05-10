@@ -30,27 +30,35 @@ namespace GoBabyGoV2.Views
         {
             base.OnAppearing();
 
-            AccelerometerMonitor.Calibration.ShouldCalibrate = true;
+            AccelerometerMonitor.ShouldCalibrate = true;
         }
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
 
-            AccelerometerMonitor.Calibration.ShouldCalibrate = false;
+            AccelerometerMonitor.ShouldCalibrate = false;
         }
 
         #endregion
 
+        #region BackButtonPressed
+
         protected override bool OnBackButtonPressed(){ return true; }
+
+        #endregion
+
+        #region CalibrationFreezeAxis
 
         private void RadioButtonGroupView_OnSelectedItemChanged(object sender, EventArgs e)
         {
             if (!(sender is RadioButtonGroupView radiobuttonGroup)) return;
 
-            var selectedvalue = radiobuttonGroup.SelectedItem.ToString();
+            var selectedValue = (CalibrationFreeze) radiobuttonGroup.SelectedItem;
 
-            AccelerometerMonitor.CalibrationFreezeAxis = selectedvalue;
+            AccelerometerMonitor.CalibrationFreezeAxis = selectedValue;
         }
+
+        #endregion
     }
 }

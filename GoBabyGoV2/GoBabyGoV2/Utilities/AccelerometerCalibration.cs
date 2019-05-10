@@ -7,23 +7,30 @@ using MvvmHelpers;
 
 namespace GoBabyGoV2.Utilities
 {
+    public enum CalibrationFreeze
+    {
+        None,
+        X,
+        Y
+    }
+
     public class AccelerometerCalibration : ObservableObject
     {
-        private bool  _shouldCalibrate;
         private float _minX;
         private float _maxX;
         private float _minY;
         private float _maxY;
+        private float _biasX;
+        private float _biasY;
 
-        public AccelerometerCalibration(float minx = 0.0f, float maxx = 0.0f, float miny = 0.0f, float maxy = 0.0f)
+        public AccelerometerCalibration(float minX = 0.0f, float maxX = 0.0f, float minY = 0.0f, float maxY = 0.0f)
         {
-            _minX = minx;
-            _maxX =  maxx;
-            _minY = miny;
-            _maxY =  maxy;
-    }
+            _minX = minX;
+            _maxX = maxX;
+            _minY = minY;
+            _maxY = maxY;
+        }
 
-        public bool ShouldCalibrate { get => _shouldCalibrate; set => SetProperty(ref _shouldCalibrate, value); }
         public float MinX
         {
             get => _minX;
@@ -46,6 +53,18 @@ namespace GoBabyGoV2.Utilities
         {
             get => _maxY;
             set => SetProperty(ref _maxY, value);
+        }
+
+        public float BiasX
+        {
+            get => _biasX;
+            set => SetProperty(ref _biasX, value);
+        }
+
+        public float BiasY
+        {
+            get => _biasY;
+            set => SetProperty(ref _biasY, value);
         }
     }
 }
