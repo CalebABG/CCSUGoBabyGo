@@ -26,7 +26,7 @@ namespace GoBabyGoV2.Views
     {
         #region PublicProperties
 
-        public static AccelerometerMonitor AccelerometerMonitor = new AccelerometerMonitor();
+        public static AccelerometerMonitor AccelerometerMonitor { get; set; } = new AccelerometerMonitor();
 
         #endregion
 
@@ -40,7 +40,8 @@ namespace GoBabyGoV2.Views
             AccelerometerMonitor.SetAccelerometerChangeEvent(CarControlAccelerometerReadingChanged);
 
             // Debug X bias for OnePlus 6T (Model A6013)
-            if (DeviceInfo.Model.ToLower().Contains("a6013"))
+            if (DeviceInfo.Model.ToLower().Contains("oneplus") &&
+                DeviceInfo.Model.ToLower().Contains("a6013"))
                 AccelerometerMonitor.Calibration.BiasX = 0.15f;
             
             // The only time I don't want the accelerometer to start is if it's in
