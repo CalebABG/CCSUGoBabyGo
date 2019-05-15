@@ -5,14 +5,18 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using GoBabyGoV2.Interfaces;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace GoBabyGoV2.Utilities
 {
-    public class AccelerometerMonitor : IDisposable
+    public class AccelerometerSensor : IAccelerometerCalibrationChanged, IDisposable 
     {
         #region StaticProperties
+
+        public static AccelerometerSensor Monitor { get; set; } = new AccelerometerSensor();
+
 
         // Set speed delay for monitoring changes. Only set from this class
         public static SensorSpeed SensorSpeed { get; } = SensorSpeed.Game;
@@ -90,5 +94,15 @@ namespace GoBabyGoV2.Utilities
         }
 
         #endregion
+
+        public void UpdateCalibrationAxisX(float val, Update updateFunc)
+        {
+            updateFunc?.Invoke(val);
+        }
+
+        public void UpdateCalibrationAxisY(float val, Update updateFunc)
+        {
+            updateFunc?.Invoke(val);
+        }
     }
 }

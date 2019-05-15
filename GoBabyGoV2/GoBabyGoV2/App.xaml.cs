@@ -56,15 +56,15 @@ namespace GoBabyGoV2
         protected override void OnSleep()
         {
             // Handle when your app sleeps
-            if (CarControlPage.AccelMonitor != null)
-                CarControlPage.AccelMonitor.StopMonitoring();
+            if (AccelerometerSensor.Monitor != null)
+                AccelerometerSensor.Monitor.StopMonitoring();
         }
 
         protected override void OnResume()
         {
             // Handle when your app resumes
-            if (CarControlPage.AccelMonitor != null)
-                CarControlPage.AccelMonitor.StartMonitoring();
+            if (AccelerometerSensor.Monitor != null)
+                AccelerometerSensor.Monitor.StartMonitoring();
         }
     }
 }

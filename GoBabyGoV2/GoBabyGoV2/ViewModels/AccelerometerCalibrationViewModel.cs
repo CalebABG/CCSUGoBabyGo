@@ -11,7 +11,7 @@ using Xamarin.Forms;
 
 namespace GoBabyGoV2.ViewModels
 {
-    public class AccelerometerCalibrationViewModel : IAccelerometerCalibrationChanged
+    public class AccelerometerCalibrationViewModel
     {
         #region Properties
 
@@ -42,26 +42,26 @@ namespace GoBabyGoV2.ViewModels
 
         #region Methods
 
-        public void UpdateCalibrationAxisX(float axisValue)
+        public void UpdateAxisX(float axisValue)
         {
-            CarControlPage.AccelMonitor.Calibration.MinX = axisValue;
-            CarControlPage.AccelMonitor.Calibration.MaxX = axisValue;
+            AccelerometerSensor.Monitor.Calibration.MinX = axisValue;
+            AccelerometerSensor.Monitor.Calibration.MaxX = axisValue;
         }
 
-        public void UpdateCalibrationAxisY(float axisValue)
+        public void UpdateAxisY(float axisValue)
         {
-            CarControlPage.AccelMonitor.Calibration.MinY = axisValue;
-            CarControlPage.AccelMonitor.Calibration.MaxY = axisValue;
+            AccelerometerSensor.Monitor.Calibration.MinY = axisValue;
+            AccelerometerSensor.Monitor.Calibration.MaxY = axisValue;
         }
 
         public async Task SetDefaultCalibration()
         {
             await Task.Run(() =>
             {
-                CarControlPage.AccelMonitor.Calibration.MinX = AccelerometerMonitor.DefaultCalibration[0];
-                CarControlPage.AccelMonitor.Calibration.MaxX = AccelerometerMonitor.DefaultCalibration[1];
-                CarControlPage.AccelMonitor.Calibration.MinY = AccelerometerMonitor.DefaultCalibration[2];
-                CarControlPage.AccelMonitor.Calibration.MaxY = AccelerometerMonitor.DefaultCalibration[3];
+                AccelerometerSensor.Monitor.Calibration.MinX = AccelerometerSensor.DefaultCalibration[0];
+                AccelerometerSensor.Monitor.Calibration.MaxX = AccelerometerSensor.DefaultCalibration[1];
+                AccelerometerSensor.Monitor.Calibration.MinY = AccelerometerSensor.DefaultCalibration[2];
+                AccelerometerSensor.Monitor.Calibration.MaxY = AccelerometerSensor.DefaultCalibration[3];
             });
         }
 
@@ -69,19 +69,19 @@ namespace GoBabyGoV2.ViewModels
         {
             await Task.Run(() =>
             {
-                switch (AccelerometerMonitor.CalibrationFreezeAxis)
+                switch (AccelerometerSensor.CalibrationFreezeAxis)
                 {
                     case CalibrationFreeze.X:
-                        UpdateCalibrationAxisY(0f);
+                        AccelerometerSensor.Monitor.UpdateCalibrationAxisY(0f, UpdateAxisY);
                         break;
 
                     case CalibrationFreeze.Y:
-                        UpdateCalibrationAxisX(0f);
+                        AccelerometerSensor.Monitor.UpdateCalibrationAxisX(0f, UpdateAxisX);
                         break;
 
                     default:
-                        UpdateCalibrationAxisX(0f);
-                        UpdateCalibrationAxisY(0f);
+                        AccelerometerSensor.Monitor.UpdateCalibrationAxisX(0f, UpdateAxisX);
+                        AccelerometerSensor.Monitor.UpdateCalibrationAxisY(0f, UpdateAxisY);
                         break;
                 }
             });

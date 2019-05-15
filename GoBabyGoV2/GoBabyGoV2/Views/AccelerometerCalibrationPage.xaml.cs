@@ -30,14 +30,14 @@ namespace GoBabyGoV2.Views
         {
             base.OnAppearing();
 
-            AccelerometerMonitor.ShouldCalibrate = true;
+            AccelerometerSensor.ShouldCalibrate = true;
         }
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
 
-            AccelerometerMonitor.ShouldCalibrate = false;
+            AccelerometerSensor.ShouldCalibrate = false;
         }
 
         #endregion
@@ -56,7 +56,7 @@ namespace GoBabyGoV2.Views
 
             var selectedValue = (CalibrationFreeze) radiobuttonGroup.SelectedItem;
 
-            AccelerometerMonitor.CalibrationFreezeAxis = selectedValue;
+            AccelerometerSensor.CalibrationFreezeAxis = selectedValue;
         }
 
         #endregion

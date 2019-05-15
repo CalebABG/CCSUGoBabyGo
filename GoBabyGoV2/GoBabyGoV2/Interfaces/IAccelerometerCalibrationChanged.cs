@@ -4,10 +4,12 @@ using System.Text;
 
 namespace GoBabyGoV2.Interfaces
 {
+    public delegate void Update(float accelVal);
+
     public interface IAccelerometerCalibrationChanged
     {
-        void UpdateCalibrationAxisX(float axisValue);
+        void UpdateCalibrationAxisX(float val, Update updateFunc);
 
-        void UpdateCalibrationAxisY(float axisValue);
+        void UpdateCalibrationAxisY(float val, Update updateFunc);
     }
 }
