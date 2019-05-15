@@ -44,24 +44,24 @@ namespace GoBabyGoV2.ViewModels
 
         public void UpdateCalibrationAxisX(float axisValue)
         {
-            CarControlPage.AccelerometerMonitor.Calibration.MinX = axisValue;
-            CarControlPage.AccelerometerMonitor.Calibration.MaxX = axisValue;
+            CarControlPage.AccelMonitor.Calibration.MinX = axisValue;
+            CarControlPage.AccelMonitor.Calibration.MaxX = axisValue;
         }
 
         public void UpdateCalibrationAxisY(float axisValue)
         {
-            CarControlPage.AccelerometerMonitor.Calibration.MinY = axisValue;
-            CarControlPage.AccelerometerMonitor.Calibration.MaxY = axisValue;
+            CarControlPage.AccelMonitor.Calibration.MinY = axisValue;
+            CarControlPage.AccelMonitor.Calibration.MaxY = axisValue;
         }
 
         public async Task SetDefaultCalibration()
         {
             await Task.Run(() =>
             {
-                CarControlPage.AccelerometerMonitor.Calibration.MinX = AccelerometerMonitor.DefaultCalibration[0];
-                CarControlPage.AccelerometerMonitor.Calibration.MaxX = AccelerometerMonitor.DefaultCalibration[1];
-                CarControlPage.AccelerometerMonitor.Calibration.MinY = AccelerometerMonitor.DefaultCalibration[2];
-                CarControlPage.AccelerometerMonitor.Calibration.MaxY = AccelerometerMonitor.DefaultCalibration[3];
+                CarControlPage.AccelMonitor.Calibration.MinX = AccelerometerMonitor.DefaultCalibration[0];
+                CarControlPage.AccelMonitor.Calibration.MaxX = AccelerometerMonitor.DefaultCalibration[1];
+                CarControlPage.AccelMonitor.Calibration.MinY = AccelerometerMonitor.DefaultCalibration[2];
+                CarControlPage.AccelMonitor.Calibration.MaxY = AccelerometerMonitor.DefaultCalibration[3];
             });
         }
 

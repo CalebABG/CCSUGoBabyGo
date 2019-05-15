@@ -44,8 +44,10 @@
 
             <StackLayout Orientation="Horizontal" HeightRequest="160" HorizontalOptions="Center" >
 
-                <Grid VerticalOptions="Center" 
-                      BindingContext="{x:Static sensors:CarControlPage.AccelerometerMonitor}">
+                <Grid VerticalOptions="Center">
+					<Grid.BindingContext>
+						<sensors:CarControlPage/>
+					</Grid.BindingContext>
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -56,26 +58,22 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label x:Name="accelMinXLabel" 
-                           Grid.Row="0" Grid.Column="0"
-                           Text="{Binding Calibration.MinX, StringFormat='Min X: {0:F2}'}"
+                    <Label Grid.Row="0" Grid.Column="0"
+                           Text="{Binding AccelMonitor.Calibration.MinX, StringFormat='Min X: {0:F2}'}"
                            TextColor="Black"
                            FontSize="22" Margin="0,0,55,0"/>
 
-                    <Label x:Name="accelMaxXLabel" 
-                           Grid.Row="0" Grid.Column="1" 
-                           Text="{Binding Calibration.MaxX, StringFormat='Max X: {0:F2}'}" 
+                    <Label Grid.Row="0" Grid.Column="1" 
+                           Text="{Binding AccelMonitor.Calibration.MaxX, StringFormat='Max X: {0:F2}'}" 
                            TextColor="Black"
                            FontSize="22"/>
 
-                    <Label x:Name="accelMinYLabel" 
-                           Grid.Row="1" Grid.Column="0" 
-                           Text="{Binding Calibration.MinY, StringFormat=' Min Y: {0:F2}'}" 
+                    <Label Grid.Row="1" Grid.Column="0" 
+                           Text="{Binding AccelMonitor.Calibration.MinY, StringFormat=' Min Y: {0:F2}'}" 
                            TextColor="Black"
                            FontSize="22" Margin="0,0,55,0"/>
 
-                    <Label x:Name="accelMaxYLabel" 
-                           Grid.Row="1" Grid.Column="1" 
+                    <Label Grid.Row="1" Grid.Column="1" 
                            Text="{Binding Calibration.MaxY, StringFormat='Max Y: {0:F2}'}" 
                            TextColor="Black"
                            FontSize="22"/>

@@ -26,7 +26,7 @@ namespace GoBabyGoV2.Views
     {
         #region PublicProperties
 
-        public static AccelerometerMonitor AccelerometerMonitor { get; set; } = new AccelerometerMonitor();
+        public static AccelerometerMonitor AccelMonitor { get; set; } = new AccelerometerMonitor();
 
         #endregion
 
@@ -37,12 +37,12 @@ namespace GoBabyGoV2.Views
             InitializeComponent();
 
             // Set the accelerometer change event in Monitor
-            AccelerometerMonitor.SetAccelerometerChangeEvent(CarControlAccelerometerReadingChanged);
+            AccelMonitor.SetAccelerometerChangeEvent(CarControlAccelerometerReadingChanged);
 
             // Debug X bias for OnePlus 6T (Model A6013)
             if (DeviceInfo.Model.ToLower().Contains("oneplus") &&
                 DeviceInfo.Model.ToLower().Contains("a6013"))
-                AccelerometerMonitor.Calibration.BiasX = 0.15f;
+                AccelMonitor.Calibration.BiasX = 0.15f;
             
             // The only time I don't want the accelerometer to start is if it's in
             // the emulator and it's iOS
@@ -53,7 +53,7 @@ namespace GoBabyGoV2.Views
             }
             else
             {
-                AccelerometerMonitor.StartMonitoring();
+                AccelMonitor.StartMonitoring();
             }
         }
 
@@ -63,14 +63,14 @@ namespace GoBabyGoV2.Views
 
         public void UpdateCalibrationAxisX(float axisValue)
         {
-            if (axisValue < AccelerometerMonitor.Calibration.MinX) AccelerometerMonitor.Calibration.MinX = axisValue;
-            if (axisValue > AccelerometerMonitor.Calibration.MaxX) AccelerometerMonitor.Calibration.MaxX = axisValue;
+            if (axisValue < AccelMonitor.Calibration.MinX) AccelMonitor.Calibration.MinX = axisValue;
+            if (axisValue > AccelMonitor.Calibration.MaxX) AccelMonitor.Calibration.MaxX = axisValue;
         }
 
         public void UpdateCalibrationAxisY(float axisValue)
         {
-            if (axisValue < AccelerometerMonitor.Calibration.MinY) AccelerometerMonitor.Calibration.MinY = axisValue;
-            if (axisValue > AccelerometerMonitor.Calibration.MaxY) AccelerometerMonitor.Calibration.MaxY = axisValue;
+            if (axisValue < AccelMonitor.Calibration.MinY) AccelMonitor.Calibration.MinY = axisValue;
+            if (axisValue > AccelMonitor.Calibration.MaxY) AccelMonitor.Calibration.MaxY = axisValue;
         }
 
         public void CarControlAccelerometerReadingChanged(object sender, AccelerometerChangedEventArgs e)
@@ -78,15 +78,15 @@ namespace GoBabyGoV2.Views
             var data = e.Reading;
             
             // Subtract out bias from each Axis
-            var accelX = data.Acceleration.X - AccelerometerMonitor.Calibration.BiasX;
-            var accelY = data.Acceleration.Y - AccelerometerMonitor.Calibration.BiasY;
+            var accelX = data.Acceleration.X - AccelMonitor.Calibration.BiasX;
+            var accelY = data.Acceleration.Y - AccelMonitor.Calibration.BiasY;
 
             // Process Acceleration X and Y (Xamarin Essentials outputs in g-force units)
-            uint calcAccelX = (uint) Map(accelX, AccelerometerMonitor.Calibration.MinX, 
-                                                      AccelerometerMonitor.Calibration.MaxX, 255.0f, 0.0f);
+            uint calcAccelX = (uint) Map(accelX, AccelMonitor.Calibration.MinX, 
+                                                      AccelMonitor.Calibration.MaxX, 255.0f, 0.0f);
 
-            uint calcAccelY = (uint) Map(accelY, AccelerometerMonitor.Calibration.MinY, 
-                                                      AccelerometerMonitor.Calibration.MaxY, 255.0f, 0.0f);
+            uint calcAccelY = (uint) Map(accelY, AccelMonitor.Calibration.MinY, 
+                                                      AccelMonitor.Calibration.MaxY, 255.0f, 0.0f);
 
             MainThread.BeginInvokeOnMainThread(() =>
             {
