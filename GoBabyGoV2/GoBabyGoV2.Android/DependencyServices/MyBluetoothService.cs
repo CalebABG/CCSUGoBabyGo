@@ -591,7 +591,7 @@ namespace GoBabyGoV2.Droid.DependencyServices
             {
                 Log.Info(TAG, "BEGIN mConnectedThread");
                 byte[] buffer = new byte[1024];
-                int bytes;
+                int bytes = 0;
 
                 // Keep listening to the InputStream while connected
                 while (parentBluetoothService.mState == STATE_CONNECTED)
@@ -599,7 +599,7 @@ namespace GoBabyGoV2.Droid.DependencyServices
                     try
                     {
                         // Read from the InputStream
-                        bytes = mmInStream.Read(buffer);
+//                        bytes = mmInStream.Read(buffer);
 
                         // Send the obtained bytes to the UI Activity
                         parentBluetoothService.mHandler.ObtainMessage(MESSAGE_READ, bytes, -1, buffer).SendToTarget();
@@ -622,7 +622,7 @@ namespace GoBabyGoV2.Droid.DependencyServices
             {
                 try
                 {
-                    mmOutStream.Write(buffer);
+//                    mmOutStream.Write(buffer);
 
                     // Share the sent message back to the UI Activity
                     parentBluetoothService.mHandler.ObtainMessage(MESSAGE_WRITE, -1, -1, buffer).SendToTarget();

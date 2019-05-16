@@ -10,7 +10,7 @@ using Plugin.CurrentActivity;
 
 namespace GoBabyGoV2.Droid
 {
-    [Activity(Label = "GoBabyGoBT", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, 
+    [Activity(Label = "GoBabyGoBT", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false, 
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape)]
     public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
