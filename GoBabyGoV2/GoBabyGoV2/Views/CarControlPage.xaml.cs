@@ -34,21 +34,11 @@ namespace GoBabyGoV2.Views
             AccelerometerSensor.Monitor.SetAccelerometerChangeEvent(CarControlAccelerometerReadingChanged);
 
             // Debug X bias for OnePlus 6T (Model A6013)
-            if (DeviceInfo.Model.ToLower().Contains("oneplus") &&
-                DeviceInfo.Model.ToLower().Contains("a6013"))
+            if (DeviceInfo.Model.ToLower().Contains("oneplus") && DeviceInfo.Model.ToLower().Contains("a6013"))
                 AccelerometerSensor.Monitor.Calibration.BiasX = 0.15f;
             
-            // The only time I don't want the accelerometer to start is if it's in
-            // the emulator and it's iOS
-            if (DependencyService.Get<IEmulatorDetect>().IsRunningInEmulator() && 
-                Device.RuntimePlatform == Device.iOS)
-            {
-                Debug.WriteLine("Not Starting Accelerometer B/c Will Crash");
-            }
-            else
-            {
-                AccelerometerSensor.Monitor.StartMonitoring();
-            }
+            // Start monitoring
+            AccelerometerSensor.Monitor.StartMonitoring();
         }
 
         #endregion

@@ -24,9 +24,11 @@ Tilting the phone down is reverse, up is forward, and logically, left and right 
 #### ** Currently for this project, only the Android solution, has working Bluetooth implementation. An iOS implementation is on the way very soon! **
 
 ### App Design
-Welcome Page | Control Page
-:-------------------------:|:-------------------------:
-![](Images/welcomepage.jpg?raw=true "UI Design")  |  ![](Images/controlpage.jpg?raw=true "UI Design")
+SplashScreen | Welcome Page | Control Page |
+:------------------------------------------------:|:-------------------------------------------------:|:------------------------------------------------:
+![](Images/splashscreen.jpg?raw=true "UI Design") | ![](Images/welcomepage.jpg?raw=true "UI Design")  |  ![](Images/controlpage.jpg?raw=true "UI Design")
+
+
 
 ---
 
@@ -40,7 +42,7 @@ The ```dev``` branch will be continuously updated, this will be the less stable 
 
 ### NuGet Packages Used
 - [Xamarin.Essentials](https://github.com/xamarin/Essentials) - A kit of essential API's!
-- [Xamarin.HotReload](https://github.com/AndreiMisiukevich/HotReload) - Live XAML view reloading!
+- [XAMLator](https://github.com/ylatuya/XAMLator) - Live XAML view reloading!
 - [NUnit](http://nunit.org/) - An awesome unit-testing framework!
-- [HotTotem.RoundedContentView](https://github.com/tomh4/HotTotem.RoundedContentView) - Rounded edge contentview!
-
+- [MVVM Helpers](http://nunit.org/) - MVVM helper classes!
+- [Xamarin.Forms.InputKit](https://github.com/enisn/Xamarin.Forms.InputKit) -  Awesome Controls such as Checkbox, Radiobutton, etc!

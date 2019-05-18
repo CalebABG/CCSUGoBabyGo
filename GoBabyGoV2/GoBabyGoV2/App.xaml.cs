@@ -10,36 +10,27 @@ namespace GoBabyGoV2
     public partial class App : Application
     {
         /*
-         * Build Info:
+         * General Build Info:
+         *
+         * Android Emulator Adb command for XAMLator:
+         * adb reverse tcp:8488 tcp:8488
+         *
          * 
          * iOS Build Info:
-         * 
-         * -         
+         *
+         * Use: Link Framework SDKs Only, if compilation errors arise due to linking
+         * Recheck: Perform all 32-bit floating point operations as 64-bit, if needed for higher precision
+         *
          *         
          * Bundle Signing:
-         * Use Manual Provisioning(Info.plist):
-         *  // identifier is tied to test Xcode app (expires May 8 2019)
-            // Xcode app uses Automatic signing (Personal Team)
-         *  - Bundle Identifier: com.cab.test1
-         *
-         * When building, for Xamarin Previewer to work properly, comment out the 'HotReloader.Current.Start(this);'
-         * line. For some reason the previewer throws a resource in use error.
-         *
-         * Additionally, if using Visual Studio 2017, in the App.xaml file, comment out the static resource definition for FontFamily
-         * in both the 'buttonStyle' and 'labelStyle' Style definitions. Having these uncommented when previewing xaml designs
-         * in VS2017 threw errors for the previewer.
+         * Use Manual Provisioning(Info.plist): Xcode app uses Automatic signing (Personal Team)
          *
          */
         public App()
         {
             InitializeComponent();
 
-            #if DEBUG
-            
-            // HotReloader.Current.Start(this);
-
-            #endif
-
+            // Create MainPage as a NavigationPage
             MainPage = new NavigationPage(new CarWelcomePage());
 
             // Set Status bar Color (Specifically for iOS)
@@ -56,15 +47,17 @@ namespace GoBabyGoV2
         protected override void OnSleep()
         {
             // Handle when your app sleeps
-            if (AccelerometerSensor.Monitor != null)
-                AccelerometerSensor.Monitor.StopMonitoring();
+
+            // If not null, try stop monitoring
+            AccelerometerSensor.Monitor?.StopMonitoring();
         }
 
         protected override void OnResume()
         {
             // Handle when your app resumes
-            if (AccelerometerSensor.Monitor != null)
-                AccelerometerSensor.Monitor.StartMonitoring();
+
+            // If not null, start monitoring again
+            AccelerometerSensor.Monitor?.StartMonitoring();
         }
     }
 }

@@ -2,9 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using GoBabyGoV2.DependencyServices;
 using GoBabyGoV2.Interfaces;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -41,7 +43,7 @@ namespace GoBabyGoV2.Utilities
 
         #endregion
 
-        #region Methods
+        #region AccelMethods
 
         public void SetAccelerometerChangeEvent(EventHandler<AccelerometerChangedEventArgs> accelerometerChangedEvent = null)
         {
@@ -51,23 +53,22 @@ namespace GoBabyGoV2.Utilities
             Accelerometer.ReadingChanged += AccelerometerChangedEvent;
         }
 
-        /// <summary>
-        /// Method to start the Xamarin.Essentials Accelerometer Service, if the service hasn't already been started.
-        /// Please make sure that either an existing callback/event handler for the Accelerometer has been added
-        /// <see cref="Accelerometer.ReadingChanged"/>
-        /// </summary>
         public void StartMonitoring()
         {
-            if (Accelerometer.IsMonitoring == false) Accelerometer.Start(SensorSpeed);
+            // If already monitoring, return (without check will throw exception because it's not handled in source of Accelerometer)
+            if (Accelerometer.IsMonitoring == true) return;
+
+            // The only time the accelerometer shouldn't start is if it's in an iOS emulator
+            if (!(DependencyService.Get<IEmulatorDetect>().IsRunningInEmulator() &&
+                  Device.RuntimePlatform == Device.iOS))
+            {
+                Accelerometer.Start(SensorSpeed);
+            }
         }
 
-        /// <summary>
-        /// Method to stop the Xamarin.Essentials Accelerometer Service, if the service is running.
-        /// This will stop the service and attempt to unsubscribe any event handlers that are in the <see cref="AccelerometerChangedEvents"/>
-        /// set. If successful, it will also clear the set.
-        /// </summary>
         public void StopMonitoring()
         {
+            // If monitoring, stop
             if (Accelerometer.IsMonitoring == true) Accelerometer.Stop();
         }
 
@@ -95,6 +96,8 @@ namespace GoBabyGoV2.Utilities
 
         #endregion
 
+        #region AccelInterfaceImplementation
+
         public void UpdateCalibrationAxisX(float val, Update updateFunc)
         {
             updateFunc?.Invoke(val);
@@ -104,5 +107,7 @@ namespace GoBabyGoV2.Utilities
         {
             updateFunc?.Invoke(val);
         }
+
+        #endregion
     }
 }

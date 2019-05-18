@@ -24,9 +24,14 @@ namespace GoBabyGoV2.iOS
         {
             global::Xamarin.Forms.Forms.Init();
 
+            // InputKit (Checkbox, RadioButton, etc. components)
             Plugin.InputKit.Platforms.iOS.Config.Init();
 
             LoadApplication(new App());
+
+            #if DEBUG
+            XAMLator.Server.PreviewServer.Run();
+            #endif
 
             return base.FinishedLaunching(app, options);
         }
