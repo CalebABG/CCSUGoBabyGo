@@ -34,9 +34,9 @@ SplashScreen | Welcome Page | Control Page |
 
 ### Branching
 
-The ```master``` branch contains the latest stable build of the project. This branch will be updated based on the ```dev``` branch when stable commits are pushed.
+The ```master``` branch contains the latest stable build of the project. This branch will be updated based on the ```accel_bias_dev``` branch when stable commits are pushed.
 
-The ```dev``` branch will be continuously updated, this will be the less stable branch but have the latest builds. 
+The ```accel_bias_dev``` branch will be continuously updated, this will be the less stable branch but have the latest builds. 
 
 ---
 
