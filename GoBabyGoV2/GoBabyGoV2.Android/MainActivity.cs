@@ -1,5 +1,6 @@
 ﻿using System;
-
+using System.Threading;
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
@@ -10,7 +11,7 @@ using Plugin.CurrentActivity;
 
 namespace GoBabyGoV2.Droid
 {
-    [Activity(Label = "GoBabyGoBT", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, 
+    [Activity(Label = "CCSUGoBabyGo", Icon = "@drawable/icon_round", Theme = "@style/MainTheme", MainLauncher = false, 
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape)]
     public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
@@ -21,13 +22,26 @@ namespace GoBabyGoV2.Droid
 
             base.OnCreate(savedInstanceState);
 
-            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            // Xamarin Forms
             Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
+            // Xamarin Essentials
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+
+            // InputKit (Checkbox, RadioButton, etc. components)
+            Plugin.InputKit.Platforms.Droid.Config.Init(this, savedInstanceState);
+
+            // CrossCurrentActivity
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
 
             LoadApplication(new App());
+
+            #if DEBUG
+            XAMLator.Server.PreviewServer.Run();
+            #endif
         }
+
+        #region Permissions
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
         {
@@ -35,5 +49,7 @@ namespace GoBabyGoV2.Droid
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+
+        #endregion
     }
 }

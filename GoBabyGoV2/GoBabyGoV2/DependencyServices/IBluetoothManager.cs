@@ -6,7 +6,7 @@ namespace GoBabyGoV2.DependencyServices
 {
     public interface IBluetoothManager
     {
-        void Connect(string macaddr, bool secureconnection = false);
+        void Connect(string macAddress, bool secureConnection = false);
 
         int GetConnectionState();
 

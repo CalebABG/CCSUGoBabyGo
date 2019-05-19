@@ -29,3 +29,11 @@ MFi Bluetooth Module: https://www.ampedrftech.com/datasheets/BT53_Datasheet.pdf
 
 
 ***********************
+
+Splash Screen Logo Setup
+
+1. Create SVG in Illustrator: 4096x4096 at 72dpi
+2. Export as PNG, with background filled with desired color
+3. Run through https://apetools.webprofusion.com/#/tools/imagegorilla to get Android and iOS bundled icons/splash screen images
+4. In splash_screen.xml, set the color of the icon, 'splash_background' attribute in the 'colors.xml' under Resources/values in Android solution,
+to the background color of the exported PNG

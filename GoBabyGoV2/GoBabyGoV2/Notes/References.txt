@@ -47,3 +47,37 @@ Toast Notifications:
 
 	Dependency Service:
 		- https://docs.microsoft.com/en-us/xamarin/xamarin-forms/app-fundamentals/dependency-service/introduction
+        
+        
+Running in Emulator Check:
+    - https://bykov.tech/2015/08/30/detect-in-xamarin-forms-if-the-app-is-running-in-simulator-or-on-real-device/
+
+
+VectorDrawable to SVG:
+	- https://github.com/RohanTalip/VectorDrawable2Svg
+
+
+App Icon Resizer (Android, iOS):
+	- https://appiconmaker.co/Home/Index/5402d49b-4e80-498d-8192-677c734d6b00
+
+
+App Launch Images:
+	- https://apetools.webprofusion.com/#/tools/imagegorilla
+    
+
+Bubble Accelerometer Calibration:
+    - https://f-droid.org/en/packages/net.androgames.level/
+
+
+Android Splash Screen:
+	- https://xamarinhelp.com/creating-splash-screen-xamarin-forms/
+	- https://blog.nicholasrogoff.com/tag/splash-screens/
+	- https://raulmonteroc.com/xamarin/setup-splash-screen-xamarin-forms/
+
+
+iOS and Android Icon Sizes:
+	- http://bijudesigner.com/blog/app-icon-and-splash-screen-sizes/
+
+
+Android Splash Screen StatusBar Color:
+	- https://forums.xamarin.com/discussion/84106/status-bar-color

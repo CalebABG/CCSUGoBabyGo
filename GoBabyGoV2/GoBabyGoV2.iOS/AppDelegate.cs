@@ -23,7 +23,15 @@ namespace GoBabyGoV2.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+
+            // InputKit (Checkbox, RadioButton, etc. components)
+            Plugin.InputKit.Platforms.iOS.Config.Init();
+
             LoadApplication(new App());
+
+            #if DEBUG
+            XAMLator.Server.PreviewServer.Run();
+            #endif
 
             return base.FinishedLaunching(app, options);
         }

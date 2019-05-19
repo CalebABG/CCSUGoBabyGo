@@ -96,7 +96,7 @@ namespace GoBabyGoV2.ViewModels
 
 
             // Add new page to Navigation stack
-            await Application.Current.MainPage.Navigation.PushModalAsync(new SensorCalibrationPage());
+            await Application.Current.MainPage.Navigation.PushModalAsync(new AccelerometerCalibrationPage());
 
         }
 
