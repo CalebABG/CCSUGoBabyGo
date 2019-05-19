@@ -1,12 +1,4 @@
-﻿Accelerometer Calibration Upon Startup:
-	- Possible add button; preferably, add a MenuItem to the Navigation
-	  page to calibrate the users phone's min/max acceleration (X and Y)
-	  Need to rotate forward, backwards; tilt right, left SLOWLY
-	  Fast movements should prompt the UI to alert the user.
-
-
-
-** iPhone Bluetooth: **
+﻿************** iPhone Bluetooth: **************
 
 Bluetooth device needs to be a MFi Accessory  (compatible [Made for iPhone])
 - https://www.amazon.com/DSD-TECH-Bluetooth-Compatible-Devices/dp/B07CHNJ1QN/ref=sr_1_1_sspa?crid=3VNGT86YFTC71&keywords=ble+module&qid=1553362123&s=gateway&sprefix=ble+mod%2Caps%2C119&sr=8-1-spons&psc=1
@@ -28,7 +20,7 @@ MFi Bluetooth Module: https://www.ampedrftech.com/datasheets/BT53_Datasheet.pdf
 
 
 
-***********************
+***********************************************
 
 Splash Screen Logo Setup
 
@@ -37,3 +29,7 @@ Splash Screen Logo Setup
 3. Run through https://apetools.webprofusion.com/#/tools/imagegorilla to get Android and iOS bundled icons/splash screen images
 4. In splash_screen.xml, set the color of the icon, 'splash_background' attribute in the 'colors.xml' under Resources/values in Android solution,
 to the background color of the exported PNG
+
+
+* When exporting graphics from AndroidStudio for Android Solution, copy PNG files from mipmap folder to
+corresponding drawable folder. Default hdpi can be copied to both drawable and drawable-hdpi folder

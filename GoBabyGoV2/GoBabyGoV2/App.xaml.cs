@@ -7,25 +7,36 @@ using Xamarin.Forms.Xaml;
 
 namespace GoBabyGoV2
 {
+    /*
+     * General Build Info:
+     *
+     * Change Configuration Mode (Debug/Release): Open Configuration Manager
+     * Build > Configuration Manager
+     *
+     *
+     * Android Release:
+     * Linker: Don't link
+     *
+     *
+     * Android Emulator Adb command for XAMLator:
+     * adb reverse tcp:8488 tcp:8488
+     *
+     * 
+     * 
+     * iOS Build Info:
+     *
+     * When targeting Release for deployment on Android, un-load iOS project if unable to Archive Android Solution (same key used)
+     *
+     * Use: Link Framework SDKs Only, if compilation errors arise due to linking
+     * Recheck: Perform all 32-bit floating point operations as 64-bit, if needed for higher precision
+     *
+     *         
+     * Bundle Signing:
+     * Use Manual Provisioning(Info.plist): Xcode app uses Automatic signing (Personal Team)
+     *
+     */
     public partial class App : Application
     {
-        /*
-         * General Build Info:
-         *
-         * Android Emulator Adb command for XAMLator:
-         * adb reverse tcp:8488 tcp:8488
-         *
-         * 
-         * iOS Build Info:
-         *
-         * Use: Link Framework SDKs Only, if compilation errors arise due to linking
-         * Recheck: Perform all 32-bit floating point operations as 64-bit, if needed for higher precision
-         *
-         *         
-         * Bundle Signing:
-         * Use Manual Provisioning(Info.plist): Xcode app uses Automatic signing (Personal Team)
-         *
-         */
         public App()
         {
             InitializeComponent();
@@ -41,7 +52,6 @@ namespace GoBabyGoV2
         protected override void OnStart()
         {
             // Handle when your app starts
-
         }
 
         protected override void OnSleep()
