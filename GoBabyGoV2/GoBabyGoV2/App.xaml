@@ -24,7 +24,7 @@
             <!-- Static Colors -->
             <Color x:Key="ColorPrimary">#369cd9</Color>
             <Color x:Key="ColorAccent">#3339c5</Color>
-            <Color x:Key="StatusBarPrimary">#1976D2</Color>
+            <Color x:Key="StatusBarPrimary">#0091ea</Color>
             <Color x:Key="StopColor">#ff44</Color>
             <Color x:Key="ReconnectColor">#FF008EBB</Color>
             <Color x:Key="ShieldColorActive">#FF32A341</Color>
@@ -35,7 +35,7 @@
             <x:String x:Key="ShieldIcon">&#xf3ed;</x:String>
             <x:String x:Key="StopIcon">&#xf06a;</x:String>
             <x:String x:Key="AxisIcon">&#xf2db;</x:String>
-            <x:String x:Key="BluetoothIcon">&#xf294;</x:String>
+            <!-- <x:String x:Key="BluetoothIcon">&#xf294;</x:String> -->
             <x:String x:Key="PowerIcon">&#xf011;</x:String>
 
 

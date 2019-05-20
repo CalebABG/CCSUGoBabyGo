@@ -2,8 +2,8 @@
 
 <resources>
 
-  <style name="MainTheme" parent="MainTheme.Base">
-  </style>
+  <style name="MainTheme" parent="MainTheme.Base"></style>
+
   <!-- Base theme applied no matter what API -->
   <style name="MainTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
     <!--If you are using revision 22.1 please use just windowNoTitle. Without android:-->
@@ -29,22 +29,12 @@
     <item name="colorAccent">#FF4081</item>
   </style>
 
-
   <!-- Custom Splash Screen/ -->
-  <style name="MyThemeSplash" parent ="Theme.AppCompat.Light.NoActionBar">
+  <style name="MyThemeSplash" parent="Theme.AppCompat.Light.NoActionBar">
     <item name="android:windowBackground">@drawable/splash_screen</item>
     <item name="android:windowNoTitle">true</item>
     <item name="android:windowFullscreen">false</item>
-    <item name="android:statusBarColor">@color/splash_background</item>
+    <item name="android:statusBarColor">@color/splash_statusbar</item>
   </style>
-
-  <!--<style name="splashscreen" parent="Theme.AppCompat.Light.NoActionBar">
-    <item name="android:windowBackground">@mipmap/CCSUGoBabyGoLogo</item>
-    <item name="android:windowNoTitle">true</item>
-    <item name="android:gravity">center</item>
-    <item name="android:windowIsTranslucent">false</item>
-    <item name="android:windowIsFloating">false</item>
-    <item name="android:backgroundDimEnabled">true</item>
-  </style>-->
 
 </resources>
