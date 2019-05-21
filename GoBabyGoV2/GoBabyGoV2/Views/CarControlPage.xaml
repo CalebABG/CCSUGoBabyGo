@@ -19,8 +19,8 @@
     </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Exit" Order="Primary" Priority="0" Clicked="MenuItem_OnExitClicked" />
-        <ToolbarItem Text="Calibrate Sensor" Order="Primary" Priority="1" Command="{Binding CalibrateSensorCommand}" />
+        <ToolbarItem Text="Exit" Clicked="MenuItem_OnExitClicked" />
+        <ToolbarItem Text="Calibrate Sensor" Command="{Binding CalibrateSensorCommand}" />
     </ContentPage.ToolbarItems>
 
     <!-- Padding/Margin Order: Left, Top, Right, Bottom -->

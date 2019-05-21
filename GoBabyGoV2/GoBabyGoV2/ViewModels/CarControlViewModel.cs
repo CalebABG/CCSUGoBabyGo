@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using GoBabyGoV2.DependencyServices;
 using GoBabyGoV2.Views;
@@ -15,12 +16,6 @@ namespace GoBabyGoV2.ViewModels
     {
         #region Properties
 
-        private bool _isCalcTicked;
-        public bool IsCalcTicked { get => _isCalcTicked; set => SetProperty(ref _isCalcTicked, value); }
-
-        private bool _parentalOverrideActive = true;
-        public bool ParentalOverrideActive { get => _parentalOverrideActive; set => SetProperty(ref _parentalOverrideActive, value); }
-
         public ICommand CalibrateSensorCommand { get; set; }
 
         public ICommand StopIconCommand { get; set; }
@@ -31,6 +26,36 @@ namespace GoBabyGoV2.ViewModels
 
         public ICommand DisconnectIconCommand { get; set; }
 
+
+        private bool _isCalcTicked;
+        public bool IsCalcTicked
+        {
+            get => _isCalcTicked;
+            set => SetProperty(ref _isCalcTicked, value);
+        }
+
+        private bool _parentalOverrideActive = true;
+        public bool ParentalOverrideActive
+        {
+            get => _parentalOverrideActive;
+            set => SetProperty(ref _parentalOverrideActive, value);
+        }
+
+        private bool _isCalibrationButtonBusy;
+        public bool IsCalibrationButtonBusy
+        {
+            get => _isCalibrationButtonBusy;
+            set
+            {
+                if (_isCalibrationButtonBusy != value)
+                {
+                    _isCalibrationButtonBusy = value;
+                    ((Command) CalibrateSensorCommand).ChangeCanExecute();
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         #endregion
 
 
@@ -39,8 +64,9 @@ namespace GoBabyGoV2.ViewModels
             #region SetupCommands
 
             // Set Calibrate Sensor Command
+            CalibrateSensorCommand = new Command(async () => await NavigateToCalibrationPage(),
+                () => IsCalibrationButtonBusy == false);
 
-            CalibrateSensorCommand = new Command(NavigateToCalibrationPage);
 
             StopIconCommand = new Command(() =>
             {
@@ -60,8 +86,9 @@ namespace GoBabyGoV2.ViewModels
 
 
                     // show toast
-                    DependencyService.Get<IToast>().ShortAlert(ParentalOverrideActive ? 
-                        "Parental Override Active" : "Deactivating Parental Override");
+                    DependencyService.Get<IToast>().ShortAlert(ParentalOverrideActive
+                        ? "Parental Override Active"
+                        : "Deactivating Parental Override");
                 }
                 catch (Exception e)
                 {
@@ -90,14 +117,14 @@ namespace GoBabyGoV2.ViewModels
 
         #region CalibrationNavigationMethod
 
-        private async void NavigateToCalibrationPage()
+        private async Task NavigateToCalibrationPage()
         {
-            // If Bluetooth is connected, disconnect
-
+            IsCalibrationButtonBusy = true;
 
             // Add new page to Navigation stack
             await Application.Current.MainPage.Navigation.PushModalAsync(new AccelerometerCalibrationPage());
 
+            IsCalibrationButtonBusy = false;
         }
 
         #endregion
