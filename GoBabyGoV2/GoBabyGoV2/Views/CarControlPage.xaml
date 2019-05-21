@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
@@ -10,12 +11,24 @@
              x:Class="GoBabyGoV2.Views.CarControlPage">
 
     <ContentPage.BindingContext>
-        <local:CarControlViewModel/>
+        <local:CarControlViewModel />
     </ContentPage.BindingContext>
 
     <ContentPage.Resources>
-        <utilities:BoolToStringConverter x:Key="BoolToStringConverter"/>
-        <utilities:BoolToColorConverter x:Key="BoolToColorConverter"/>
+        <utilities:BoolToStringConverter x:Key="BoolToStringConverter" />
+        <utilities:BoolToColorConverter x:Key="BoolToColorConverter" />
+
+        <ResourceDictionary>
+
+            <!-- Implicit style for Frame -->
+            <Style TargetType="Frame">
+                <Setter Property="Padding" Value="8" />
+                <Setter Property="CornerRadius" Value="8" />
+                <Setter Property="HasShadow" Value="False" />
+            </Style>
+
+        </ResourceDictionary>
+
     </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
@@ -31,128 +44,124 @@
             <!-- Container -->
             <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource ColorAccent}">
 
-
                 <!-- First Pane -->
-                <StackLayout Orientation="Vertical"
-                         BackgroundColor="{StaticResource ColorAccent}"
-                         Margin="8,8,0,8">
+                <StackLayout Margin="8,8,0,8" BackgroundColor="{StaticResource ColorAccent}">
 
                     <!-- First Card View: Buttons -->
-                    <Frame Padding="5"
-                       HasShadow="false"
-                       CornerRadius="8"
-                       BackgroundColor="{StaticResource ColorPrimary}">
+                    <Frame BackgroundColor="{StaticResource ColorPrimary}">
 
-                        <StackLayout Orientation="Vertical"
-                                 Padding="8"
-                                 VerticalOptions="Center">
+                        <Grid ColumnSpacing="8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
 
-                            <Label Text="Car Controls" TextColor="White" FontSize="18"/>
-                            <StackLayout Orientation="Horizontal">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
 
-                                <Button Text="{StaticResource StopIcon}"
+                            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"
+                                   Text="Car Controls" TextColor="White" FontSize="18" />
+
+                            <Button Grid.Column="0" Grid.Row="1"
+                                    Text="{StaticResource StopIcon}"
                                     TextColor="Black"
                                     FontFamily="{StaticResource FontAwesomeSolid}"
                                     Command="{Binding StopIconCommand}"
                                     BackgroundColor="{StaticResource StopColor}"
-                                    Style="{StaticResource ButtonStyle}"
-                                    />
+                                    Style="{StaticResource ButtonStyle}" />
 
-                                <Button Text="{StaticResource ShieldIcon}"
+                            <Button Grid.Column="1" Grid.Row="1"
+                                    Text="{StaticResource ShieldIcon}"
                                     TextColor="Black"
                                     FontFamily="{StaticResource FontAwesomeSolid}"
                                     Command="{Binding ShieldIconCommand}"
                                     BackgroundColor="{Binding ParentalOverrideActive, Converter={StaticResource BoolToColorConverter}}"
-                                    Style="{StaticResource ButtonStyle}"
-                                    />
+                                    Style="{StaticResource ButtonStyle}" />
 
-                                <Button Text="{StaticResource ReconnectIcon}" 
+
+                            <Button Grid.Column="2" Grid.Row="1"
+                                    Text="{StaticResource ReconnectIcon}"
                                     TextColor="Black"
                                     FontFamily="{StaticResource FontAwesomeSolid}"
                                     Command="{Binding ReconnectIconCommand}"
                                     BackgroundColor="{StaticResource ReconnectColor}"
-                                    Style="{StaticResource ButtonStyle}"
-                                    />
+                                    Style="{StaticResource ButtonStyle}" />
 
-                            </StackLayout>
-
-                        </StackLayout>
+                        </Grid>
 
                     </Frame>
 
 
                     <!-- Second Card View: Sensor Info -->
-                    <Frame Padding="5"
-                       HasShadow="false"
-                       BackgroundColor="{StaticResource ColorPrimary}"
-                       CornerRadius="8">
+                    <Frame BackgroundColor="{StaticResource ColorPrimary}">
 
-                        <StackLayout Orientation="Vertical"
-                                 Padding="8"
-                                 VerticalOptions="Center">
+                        <StackLayout>
 
-                            <Grid ColumnSpacing="12">
+                            <Grid ColumnSpacing="15">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
 
                                 <Label Grid.Row="0" Grid.Column="0"
-                                   Text="Sensor Info" TextColor="White"
-                                   FontSize="18" />
+                                       Text="Sensor Info" TextColor="White"
+                                       FontSize="18" />
 
                                 <StackLayout Grid.Row="0" Grid.Column="1"
-                                         Orientation="Horizontal" 
-                                         HorizontalOptions="End">
+                                             Orientation="Horizontal">
 
-                                    <Label Text="{Binding IsCalcTicked, Converter={StaticResource BoolToStringConverter}}"
-                                       FontSize="18" TextColor="White"/>
+                                    <Label Text="{Binding IsCalcTicked, 
+                                                  Converter={StaticResource BoolToStringConverter}}"
+                                           FontSize="18" TextColor="White" />
 
-                                    <Switch IsToggled="{Binding IsCalcTicked}" HeightRequest="30"/>
+                                    <Switch IsToggled="{Binding IsCalcTicked}" HeightRequest="30" />
 
                                 </StackLayout>
 
                             </Grid>
 
                             <!-- Sensor Axis Grid -->
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
-                                <Button Text="{StaticResource AxisIcon}"
-                                    FontFamily="{StaticResource FontAwesomeSolid}"
-                                    Style="{StaticResource LabelStyle}" 
-                                    />
+                            <StackLayout Orientation="Horizontal">
 
-                                <Grid RowSpacing="0" ColumnSpacing="0" 
-                                  HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                                <Button Text="{StaticResource AxisIcon}"
+                                        FontFamily="{StaticResource FontAwesomeSolid}"
+                                        Style="{StaticResource LabelStyle}" />
+
+                                <Grid RowSpacing="0" ColumnSpacing="0"
+                                      HorizontalOptions="FillAndExpand">
 
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
 
                                     <Label Grid.Row="0" Grid.Column="0"
-                                       Text="X:" TextColor="White" FontSize="18" 
-                                       HorizontalOptions="Start"/>
+                                           Text="X:" TextColor="White" FontSize="18"
+                                           HorizontalOptions="Start" />
 
                                     <Label Grid.Row="0" Grid.Column="1"
-                                       x:Name="AccelXLabel" 
-                                       Text="0.00 G" TextColor="White" FontSize="18" 
-                                       HorizontalOptions="End"/>
+                                           x:Name="AccelXLabel"
+                                           Text="0.00 G" TextColor="White" FontSize="18"
+                                           HorizontalOptions="End" />
 
                                     <Label Grid.Row="1" Grid.Column="0"
-                                       Text="Y:" TextColor="White" FontSize="18" 
-                                       HorizontalOptions="Start"/>
+                                           Text="Y:" TextColor="White" FontSize="18"
+                                           HorizontalOptions="Start" />
 
                                     <Label Grid.Row="1" Grid.Column="1"
-                                       x:Name="AccelYLabel" 
-                                       Text="0.00 G" TextColor="White" FontSize="18" 
-                                       HorizontalOptions="End"/>
+                                           x:Name="AccelYLabel"
+                                           Text="0.00 G" TextColor="White" FontSize="18"
+                                           HorizontalOptions="End" />
 
                                 </Grid>
 
@@ -163,60 +172,45 @@
                     </Frame>
 
 
-                    <!-- Third Card View: Sensor Info -->
-                    <Frame Padding="5"
-                       CornerRadius="8" 
-                       HasShadow="false"
-                       BackgroundColor="{StaticResource ColorPrimary}">
+                    <!-- Third Card View: Bluetooth Status -->
+                    <Frame BackgroundColor="{StaticResource ColorPrimary}">
 
-                        <StackLayout Orientation="Vertical"
-                                 Padding="8"
-                                 VerticalOptions="Center">
+                        <StackLayout >
 
-                            <Label Text="Bluetooth Status" TextColor="White" 
-                               FontSize="18" VerticalOptions="Center"/>
+                            <Label Text="Bluetooth Status" TextColor="White" FontSize="18" />
 
                             <!-- / -->
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+                            <StackLayout Orientation="Horizontal">
 
-                                <Grid RowSpacing="0" ColumnSpacing="12" 
-                                  HorizontalOptions="FillAndExpand"
-                                  VerticalOptions="Center">
+                                <Grid RowSpacing="0" ColumnSpacing="12"
+                                      HorizontalOptions="FillAndExpand"
+                                      VerticalOptions="Center">
 
                                     <Grid.ColumnDefinitions>
-                                        <!--                                    <ColumnDefinition Width="*"/>-->
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
 
-                                    <!--<Button Grid.Row="0" Grid.Column="0" 
-                                        Text="{StaticResource BluetoothIcon}"
-                                        FontFamily="{StaticResource FontAwesomeBrands}"
-                                        Style="{StaticResource ButtonStyle}"
-                                        WidthRequest="30" />-->
+                                    <Label Grid.Row="0" Grid.Column="0"
+                                           Text="Disconnected" TextColor="White"
+                                           FontSize="18"
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="Center" />
 
-                                    <Label Grid.Row="0" Grid.Column="0" 
-                                       Text="Disconnected" TextColor="White" 
-                                       FontSize="18" 
-                                       HorizontalOptions="Start" 
-                                       VerticalOptions="Center"/>
-
-                                    <Button Grid.Row="0" Grid.Column="1" 
-                                        Text="{StaticResource PowerIcon}" 
-                                        Command="{Binding DisconnectIconCommand}"
-                                        WidthRequest="45" 
-                                        HeightRequest="45"
-                                        HorizontalOptions="End"
-                                        VerticalOptions="Center"
-                                        Padding="0" Margin="0"
-                                        CornerRadius="22"
-                                        FontSize="20" 
-                                        FontFamily="{StaticResource FontAwesomeSolid}"
-                                        Style="{StaticResource ButtonStyle}"
-                                        TextColor="Black" BackgroundColor="#F0F0F0" />
+                                    <Button Grid.Row="0" Grid.Column="1"
+                                            Text="{StaticResource PowerIcon}"
+                                            Command="{Binding DisconnectIconCommand}"
+                                            WidthRequest="40"
+                                            HeightRequest="40"
+                                            HorizontalOptions="End"
+                                            CornerRadius="22"
+                                            FontSize="18"
+                                            FontFamily="{StaticResource FontAwesomeSolid}"
+                                            Style="{StaticResource ButtonStyle}"
+                                            TextColor="Black" BackgroundColor="#F0F0F0" />
 
                                 </Grid>
 
@@ -230,20 +224,18 @@
 
 
                 <!-- Second Pane -->
-                <Frame VerticalOptions="FillAndExpand" 
-                   HorizontalOptions="FillAndExpand" 
-                   Margin="0,8,8,8"
-                   CornerRadius="8"
-                   HasShadow="false"
-                   BackgroundColor="{StaticResource ColorPrimary}">
+                <Frame VerticalOptions="FillAndExpand"
+                       HorizontalOptions="FillAndExpand"
+                       Margin="0,8,8,8"
+                       BackgroundColor="{StaticResource ColorPrimary}">
 
                     <StackLayout Orientation="Vertical">
 
                         <Button Text="Send Packet"
-                            FontSize="18"
-                            BackgroundColor="#EEEEEE"
-                            TextColor="#272727"
-                            HorizontalOptions="Fill" />
+                                FontSize="18"
+                                BackgroundColor="#EEEEEE"
+                                TextColor="#272727"
+                                HorizontalOptions="Fill" />
 
                     </StackLayout>
 
@@ -252,7 +244,7 @@
             </StackLayout>
 
         </ScrollView>
-        
+
 
     </ContentPage.Content>
 

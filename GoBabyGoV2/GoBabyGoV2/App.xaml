@@ -35,15 +35,13 @@
             <x:String x:Key="ShieldIcon">&#xf3ed;</x:String>
             <x:String x:Key="StopIcon">&#xf06a;</x:String>
             <x:String x:Key="AxisIcon">&#xf2db;</x:String>
-            <!-- <x:String x:Key="BluetoothIcon">&#xf294;</x:String> -->
             <x:String x:Key="PowerIcon">&#xf011;</x:String>
-
 
             <Style x:Key="ButtonStyle" TargetType="Button">
                 <Setter Property="VerticalOptions" Value="Center"/>
-                <Setter Property="WidthRequest" Value="60"/>
-                <Setter Property="HeightRequest" Value="60"/>
-                <Setter Property="FontSize" Value="35"/>
+                <Setter Property="WidthRequest" Value="55"/>
+                <Setter Property="HeightRequest" Value="55"/>
+                <Setter Property="FontSize" Value="30"/>
                 <Setter Property="CornerRadius" Value="30"/>
             </Style>
 
