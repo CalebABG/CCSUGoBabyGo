@@ -45,7 +45,7 @@ The ```accel_bias_dev``` branch will be continuously updated, this will be the l
 
 ### NuGet Packages Used
 - [Xamarin.Essentials](https://github.com/xamarin/Essentials) - A kit of essential API's!
-- [XAMLator](https://github.com/ylatuya/XAMLator) - Live XAML view reloading!
+- [Xamarin.HotReload](https://github.com/AndreiMisiukevich/HotReload) - Live XAML view reloading!
 - [NUnit](http://nunit.org/) - An awesome unit-testing framework!
 - [MVVM Helpers](https://github.com/jamesmontemagno/mvvm-helpers) - MVVM helper classes!
 - [Xamarin.Forms.InputKit](https://github.com/enisn/Xamarin.Forms.InputKit) -  Awesome Controls such as Checkbox, Radiobutton, etc!

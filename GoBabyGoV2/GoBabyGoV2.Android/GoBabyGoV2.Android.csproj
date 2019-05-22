@@ -87,8 +87,8 @@
     <PackageReference Include="Xamarin.Forms.InputKit">
       <Version>3.0.11</Version>
     </PackageReference>
-    <PackageReference Include="XAMLator">
-      <Version>2019.3.24.12</Version>
+    <PackageReference Include="Xamarin.HotReload">
+      <Version>1.2.9</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

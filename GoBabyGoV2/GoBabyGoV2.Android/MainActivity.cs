@@ -35,10 +35,6 @@ namespace GoBabyGoV2.Droid
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
 
             LoadApplication(new App());
-
-            #if DEBUG
-            XAMLator.Server.PreviewServer.Run();
-            #endif
         }
 
         #region Permissions
