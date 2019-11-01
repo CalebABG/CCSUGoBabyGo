@@ -1,19 +1,16 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
 using Plugin.CurrentActivity;
+using Plugin.InputKit;
+using Xamarin.Forms.Platform.Android;
 
 namespace GoBabyGoV2.Droid
 {
     [Activity(Label = "CCSUGoBabyGo", Icon = "@drawable/icon_round", Theme = "@style/MainTheme", MainLauncher = false, 
-        ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape)]
-    public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity
+        ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, ScreenOrientation = ScreenOrientation.Landscape)]
+    public class MainActivity : FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -22,14 +19,14 @@ namespace GoBabyGoV2.Droid
 
             base.OnCreate(savedInstanceState);
 
-            // Xamarin Forms
-            Xamarin.Forms.Forms.Init(this, savedInstanceState);
-
             // Xamarin Essentials
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
 
+            // Xamarin Forms
+            Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
             // InputKit (Checkbox, RadioButton, etc. components)
-            Plugin.InputKit.Platforms.Droid.Config.Init(this, savedInstanceState);
+            Plugin.InputKit.Platforms.Droid.Config.Init(this,savedInstanceState);
 
             // CrossCurrentActivity
             CrossCurrentActivity.Current.Init(this, savedInstanceState);

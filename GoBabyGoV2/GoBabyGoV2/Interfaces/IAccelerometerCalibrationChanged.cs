@@ -9,7 +9,6 @@ namespace GoBabyGoV2.Interfaces
     public interface IAccelerometerCalibrationChanged
     {
         void UpdateCalibrationAxisX(float val, Update updateFunc);
-
         void UpdateCalibrationAxisY(float val, Update updateFunc);
     }
 }

@@ -4,18 +4,9 @@
 using GoBabyGoV2.Utilities;
 using GoBabyGoV2.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GoBabyGoV2.DependencyServices;
-using GoBabyGoV2.Interfaces;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
-using static System.Math;
 using static GoBabyGoV2.Utilities.Utilities;
 
 

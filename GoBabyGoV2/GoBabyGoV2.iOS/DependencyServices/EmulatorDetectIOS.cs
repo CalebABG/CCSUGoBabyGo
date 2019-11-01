@@ -13,8 +13,7 @@ namespace GoBabyGoV2.iOS.DependencyServices
 
         public bool IsRunningInEmulator()
         {
-            if (ObjCRuntime.Runtime.Arch == ObjCRuntime.Arch.SIMULATOR) return true;
-            return false;
+            return ObjCRuntime.Runtime.Arch == ObjCRuntime.Arch.SIMULATOR;
         }
     }
 }

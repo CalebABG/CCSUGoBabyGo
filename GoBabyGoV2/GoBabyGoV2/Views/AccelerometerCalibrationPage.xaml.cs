@@ -1,10 +1,4 @@
-﻿using GoBabyGoV2.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using GoBabyGoV2.Utilities;
 using Plugin.InputKit.Shared.Controls;
 using Xamarin.Forms;

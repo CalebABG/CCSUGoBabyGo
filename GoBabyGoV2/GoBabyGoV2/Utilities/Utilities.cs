@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GoBabyGoV2.Utilities
+﻿namespace GoBabyGoV2.Utilities
 {
     public class Utilities
     {

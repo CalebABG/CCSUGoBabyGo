@@ -1,12 +1,6 @@
 ﻿using GoBabyGoV2.Utilities;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using GoBabyGoV2.Interfaces;
-using GoBabyGoV2.Views;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace GoBabyGoV2.ViewModels

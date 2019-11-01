@@ -40,5 +40,9 @@
 	<string>Assets.xcassets/AppIcons.appiconset</string>
 	<key>UILaunchStoryboardName</key>
 	<string>CustomLaunchScreen</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+	</array>
 </dict>
 </plist>

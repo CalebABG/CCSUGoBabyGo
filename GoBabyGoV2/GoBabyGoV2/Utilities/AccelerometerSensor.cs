@@ -1,11 +1,4 @@
-﻿using GoBabyGoV2.Views;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
+﻿using System;
 using GoBabyGoV2.DependencyServices;
 using GoBabyGoV2.Interfaces;
 using Xamarin.Essentials;
@@ -56,7 +49,7 @@ namespace GoBabyGoV2.Utilities
         public void StartMonitoring()
         {
             // If already monitoring, return (without check will throw exception because it's not handled in source of Accelerometer)
-            if (Accelerometer.IsMonitoring == true) return;
+            if (Accelerometer.IsMonitoring) return;
 
             // The only time the accelerometer shouldn't start is if it's in an iOS emulator
             if (!(DependencyService.Get<IEmulatorDetect>().IsRunningInEmulator() &&
@@ -69,7 +62,7 @@ namespace GoBabyGoV2.Utilities
         public void StopMonitoring()
         {
             // If monitoring, stop
-            if (Accelerometer.IsMonitoring == true) Accelerometer.Stop();
+            if (Accelerometer.IsMonitoring) Accelerometer.Stop();
         }
 
         #endregion
