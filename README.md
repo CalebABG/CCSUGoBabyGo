@@ -21,8 +21,6 @@ Tilting the phone down is reverse, up is forward, and logically, left and right 
 
 ## Project Dev
 
-#### ** Currently for this project, only the Android solution, has working Bluetooth implementation. An iOS implementation is on the way very soon! **
-
 ### App Design
 
 #### App Screen Recording
