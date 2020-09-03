@@ -6,11 +6,12 @@ namespace GoBabyGoV2.ViewModels
 {
     public class CarWelcomeViewModel
     {
-        public ICommand GoToCarControlCommand { get; }
-
         public CarWelcomeViewModel()
         {
-            GoToCarControlCommand = new Command(async () => await Application.Current.MainPage.Navigation.PushAsync(new CarControlPage(), true));
+            GoToCarControlCommand = new Command(async () =>
+                await Application.Current.MainPage.Navigation.PushAsync(new CarControlPage(), true));
         }
+
+        public ICommand GoToCarControlCommand { get; }
     }
 }

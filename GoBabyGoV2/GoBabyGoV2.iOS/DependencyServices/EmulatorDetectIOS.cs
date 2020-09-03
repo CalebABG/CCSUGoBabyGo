@@ -1,19 +1,17 @@
-﻿using System;
-using GoBabyGoV2.DependencyServices;
+﻿using GoBabyGoV2.DependencyServices;
 using GoBabyGoV2.iOS.DependencyServices;
+using ObjCRuntime;
+using Xamarin.Forms;
 
-[assembly: Xamarin.Forms.Dependency(typeof(EmulatorDetectIOS))]
+[assembly: Dependency(typeof(EmulatorDetectIOS))]
+
 namespace GoBabyGoV2.iOS.DependencyServices
 {
     public class EmulatorDetectIOS : IEmulatorDetect
     {
-        public EmulatorDetectIOS()
-        {
-        }
-
         public bool IsRunningInEmulator()
         {
-            return ObjCRuntime.Runtime.Arch == ObjCRuntime.Arch.SIMULATOR;
+            return Runtime.Arch == Arch.SIMULATOR;
         }
     }
 }

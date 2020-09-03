@@ -18,6 +18,28 @@ namespace GoBabyGoV2.Views
 
         #endregion
 
+        #region BackButtonPressed
+
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
+
+        #endregion
+
+        #region CalibrationFreezeAxis
+
+        private void RadioButtonGroupView_OnSelectedItemChanged(object sender, EventArgs e)
+        {
+            if (!(sender is RadioButtonGroupView radiobuttonGroup)) return;
+
+            var selectedValue = (CalibrationFreeze) radiobuttonGroup.SelectedItem;
+
+            AccelerometerSensor.CalibrationFreezeAxis = selectedValue;
+        }
+
+        #endregion
+
         #region OnAppearingDisappearing
 
         protected override void OnAppearing()
@@ -32,25 +54,6 @@ namespace GoBabyGoV2.Views
             base.OnDisappearing();
 
             AccelerometerSensor.ShouldCalibrate = false;
-        }
-
-        #endregion
-
-        #region BackButtonPressed
-
-        protected override bool OnBackButtonPressed(){ return true; }
-
-        #endregion
-
-        #region CalibrationFreezeAxis
-
-        private void RadioButtonGroupView_OnSelectedItemChanged(object sender, EventArgs e)
-        {
-            if (!(sender is RadioButtonGroupView radiobuttonGroup)) return;
-
-            var selectedValue = (CalibrationFreeze) radiobuttonGroup.SelectedItem;
-
-            AccelerometerSensor.CalibrationFreezeAxis = selectedValue;
         }
 
         #endregion

@@ -9,26 +9,6 @@ namespace GoBabyGoV2.ViewModels
 {
     public class CarControlViewModel : BaseViewModel
     {
-        #region Properties
-
-        private bool _isCalcTicked;
-        public bool IsCalcTicked { get => _isCalcTicked; set => SetProperty(ref _isCalcTicked, value); }
-
-        private bool _parentalOverrideActive = true;
-        public bool ParentalOverrideActive { get => _parentalOverrideActive; set => SetProperty(ref _parentalOverrideActive, value); }
-
-        public ICommand CalibrateSensorCommand { get; set; }
-
-        public ICommand StopIconCommand { get; set; }
-
-        public ICommand ShieldIconCommand { get; set; }
-
-        public ICommand ReconnectIconCommand { get; set; }
-
-        public ICommand DisconnectIconCommand { get; set; }
-
-        #endregion
-
         public CarControlViewModel()
         {
             #region SetupCommands
@@ -55,8 +35,9 @@ namespace GoBabyGoV2.ViewModels
 
 
                     // show toast
-                    DependencyService.Get<IToast>().ShortAlert(ParentalOverrideActive ? 
-                        "Parental Override Active" : "Deactivating Parental Override");
+                    DependencyService.Get<IToast>().ShortAlert(ParentalOverrideActive
+                        ? "Parental Override Active"
+                        : "Deactivating Parental Override");
                 }
                 catch (Exception e)
                 {
@@ -92,8 +73,37 @@ namespace GoBabyGoV2.ViewModels
 
             // Add new page to Navigation stack
             await Application.Current.MainPage.Navigation.PushModalAsync(new AccelerometerCalibrationPage());
-
         }
+
+        #endregion
+
+        #region Properties
+
+        private bool _isCalcTicked;
+
+        public bool IsCalcTicked
+        {
+            get => _isCalcTicked;
+            set => SetProperty(ref _isCalcTicked, value);
+        }
+
+        private bool _parentalOverrideActive = true;
+
+        public bool ParentalOverrideActive
+        {
+            get => _parentalOverrideActive;
+            set => SetProperty(ref _parentalOverrideActive, value);
+        }
+
+        public ICommand CalibrateSensorCommand { get; set; }
+
+        public ICommand StopIconCommand { get; set; }
+
+        public ICommand ShieldIconCommand { get; set; }
+
+        public ICommand ReconnectIconCommand { get; set; }
+
+        public ICommand DisconnectIconCommand { get; set; }
 
         #endregion
     }

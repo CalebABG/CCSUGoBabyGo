@@ -1,7 +1,5 @@
 ﻿using GoBabyGoV2.Utilities;
 using GoBabyGoV2.Views;
-using System;
-using System.Diagnostics;
 using Xamarin.Forms;
 
 namespace GoBabyGoV2
@@ -15,10 +13,6 @@ namespace GoBabyGoV2
      *
      * Android Release:
      * Linker: Don't link
-     *
-     * Comment out 'HotReloader.Current.Start(this);' if using Xamarin Previewer
-     * Android Emulator Adb command for Hot.Reload:
-     * adb forward tcp:8000 tcp:8000
      *
      * 
      * 
@@ -39,10 +33,6 @@ namespace GoBabyGoV2
         public App()
         {
             InitializeComponent();
-
-#if DEBUG
-            // HotReloader.Current.Start(this);
-#endif
 
             // Create MainPage as a NavigationPage
             MainPage = new NavigationPage(new CarWelcomePage());

@@ -7,12 +7,12 @@ Accelerometer:
 
 
 Rounding Effect:
-	- Nugut Package:
+	- NuGet Package:
 		- https://www.nuget.org/packages/HotTotem.RoundedContentView
 
 
 Device Rotation Lock:
-	- Nugut Package:
+	- NuGet Package:
 		- https://www.nuget.org/packages/Plugin.DeviceOrientation/
 
 

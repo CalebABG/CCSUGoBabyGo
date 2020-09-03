@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Text;
-using MvvmHelpers;
+﻿using MvvmHelpers;
 
 namespace GoBabyGoV2.Utilities
 {
@@ -16,12 +11,12 @@ namespace GoBabyGoV2.Utilities
 
     public class AccelerometerCalibration : ObservableObject
     {
-        private float _minX;
-        private float _maxX;
-        private float _minY;
-        private float _maxY;
         private float _biasX;
         private float _biasY;
+        private float _maxX;
+        private float _maxY;
+        private float _minX;
+        private float _minY;
 
         public AccelerometerCalibration(float minX = 0.0f, float maxX = 0.0f, float minY = 0.0f, float maxY = 0.0f)
         {

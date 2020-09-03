@@ -1,48 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Android.App;
+﻿using System.IO;
 using Android.Bluetooth;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Util;
-using Android.Views;
-using Android.Widget;
-using Java.IO;
 using Java.Lang;
 using Java.Util;
-using String = System.String;
+using IOException = Java.IO.IOException;
 
 namespace GoBabyGoV2.Droid.DependencyServices
 {
     public class MyBluetoothService
     {
-        private static object _lock = new object();
-
-        // Debugging
-        private static string TAG = "GBGBTService";
-
-        // Name for the SDP record when creating server socket
-        private static string NAME_SECURE = "GBGBTSecure";
-        private static string NAME_INSECURE = "GBGBTInsecure";
-
-        // Unique UUID for this application
-//        private static UUID MY_UUID_SECURE = UUID.FromString("fa87c0d0-afac-11de-8a39-0800200c9a66");
-//        private static UUID MY_UUID_INSECURE = UUID.FromString("8ce255c0-200a-11e0-ac64-0800200c9a66");
-
-        private static UUID BLUETOOTH_CLASSIC_UUID = UUID.FromString("00001101-0000-1000-8000-00805F9B34FB");
-
-        // Member fields
-        public BluetoothAdapter mAdapter;
-        private Handler mHandler;
-        private AcceptThread mSecureAcceptThread;
-        private AcceptThread mInsecureAcceptThread;
-        private ConnectThread mConnectThread;
-        private ConnectedThread mConnectedThread;
-        private int mState;
-        private int mNewState;
-
         // Constants that indicate the current connection state
         public const int STATE_NONE = 0; // we're doing nothing
         public const int STATE_LISTEN = 1; // now listening for incoming connections
@@ -59,6 +27,30 @@ namespace GoBabyGoV2.Droid.DependencyServices
         // Key names received from the BluetoothChatService Handler
         public const string DEVICE_NAME = "device_name";
         public const string TOAST = "toast";
+        private static readonly object _lock = new object();
+
+        // Debugging
+        private static readonly string TAG = "GBGBTService";
+
+        // Name for the SDP record when creating server socket
+        private static readonly string NAME_SECURE = "GBGBTSecure";
+        private static readonly string NAME_INSECURE = "GBGBTInsecure";
+
+        // Unique UUID for this application
+//        private static UUID MY_UUID_SECURE = UUID.FromString("fa87c0d0-afac-11de-8a39-0800200c9a66");
+//        private static UUID MY_UUID_INSECURE = UUID.FromString("8ce255c0-200a-11e0-ac64-0800200c9a66");
+
+        private static readonly UUID BLUETOOTH_CLASSIC_UUID = UUID.FromString("00001101-0000-1000-8000-00805F9B34FB");
+
+        // Member fields
+        public BluetoothAdapter mAdapter;
+        private ConnectedThread mConnectedThread;
+        private ConnectThread mConnectThread;
+        private readonly Handler mHandler;
+        private AcceptThread mInsecureAcceptThread;
+        private int mNewState;
+        private AcceptThread mSecureAcceptThread;
+        private int mState;
 
         public MyBluetoothService(ref Context context, ref Handler handler)
         {
@@ -90,7 +82,10 @@ namespace GoBabyGoV2.Droid.DependencyServices
         */
         public int GetState()
         {
-            lock (_lock) return mState;
+            lock (_lock)
+            {
+                return mState;
+            }
         }
 
         /**
@@ -137,7 +132,7 @@ namespace GoBabyGoV2.Droid.DependencyServices
 
         /**
          * Start the ConnectThread to initiate a connection to a remote device.
-         *
+         * 
          * @param device The BluetoothDevice to connect
          * @param secure Socket Security type - Secure (true) , Insecure (false)
          */
@@ -149,13 +144,11 @@ namespace GoBabyGoV2.Droid.DependencyServices
 
                 // Cancel any thread attempting to make a connection
                 if (mState == STATE_CONNECTING)
-                {
                     if (mConnectThread != null)
                     {
                         mConnectThread.Cancel();
                         mConnectThread = null;
                     }
-                }
 
                 // Cancel any thread currently running a connection
                 if (mConnectedThread != null)
@@ -175,7 +168,7 @@ namespace GoBabyGoV2.Droid.DependencyServices
 
         /**
          * Start the ConnectedThread to begin managing a Bluetooth connection
-         *
+         * 
          * @param socket The BluetoothSocket on which the connection was made
          * @param device The BluetoothDevice that has been connected
          */
@@ -217,8 +210,8 @@ namespace GoBabyGoV2.Droid.DependencyServices
                 mConnectedThread.Start();
 
                 // Send the name of the connected device back to the UI Activity
-                Message msg = mHandler.ObtainMessage(MESSAGE_DEVICE_NAME);
-                Bundle bundle = new Bundle();
+                var msg = mHandler.ObtainMessage(MESSAGE_DEVICE_NAME);
+                var bundle = new Bundle();
 
                 bundle.PutString(DEVICE_NAME, device.Name);
                 msg.Data = bundle;
@@ -272,7 +265,7 @@ namespace GoBabyGoV2.Droid.DependencyServices
 
         /**
          * Write to the ConnectedThread in an unsynchronized manner
-         *
+         * 
          * @param out The bytes to write
          * @see ConnectedThread#write(byte[])
          */
@@ -298,8 +291,8 @@ namespace GoBabyGoV2.Droid.DependencyServices
         private void ConnectionFailed()
         {
             // Send a failure message back to the Activity
-            Message msg = mHandler.ObtainMessage(MESSAGE_TOAST);
-            Bundle bundle = new Bundle();
+            var msg = mHandler.ObtainMessage(MESSAGE_TOAST);
+            var bundle = new Bundle();
 
             bundle.PutString(TOAST, "Unable to connect device");
             msg.Data = bundle;
@@ -312,7 +305,7 @@ namespace GoBabyGoV2.Droid.DependencyServices
             UpdateUserInterfaceTitle();
 
             // Start the service over to restart listening mode
-            this.Start();
+            Start();
         }
 
         /**
@@ -321,8 +314,8 @@ namespace GoBabyGoV2.Droid.DependencyServices
         private void ConnectionLost()
         {
             // Send a failure message back to the Activity
-            Message msg = mHandler.ObtainMessage(MESSAGE_TOAST);
-            Bundle bundle = new Bundle();
+            var msg = mHandler.ObtainMessage(MESSAGE_TOAST);
+            var bundle = new Bundle();
 
             bundle.PutString(TOAST, "Device connection was lost");
             msg.Data = bundle;
@@ -335,19 +328,19 @@ namespace GoBabyGoV2.Droid.DependencyServices
             UpdateUserInterfaceTitle();
 
             // Start the service over to restart listening mode
-            this.Start();
+            Start();
         }
 
 
         public class AcceptThread : Thread
         {
             // The local server socket
-            private BluetoothServerSocket mmServerSocket;
-
-            private MyBluetoothService parentBluetoothService;
+            private readonly BluetoothServerSocket mmServerSocket;
 
 //            private BluetoothAdapter mAdapter;
-            private string mSocketType;
+            private readonly string mSocketType;
+
+            private readonly MyBluetoothService parentBluetoothService;
 
             public AcceptThread(bool secure, MyBluetoothService bluetoothService)
             {
@@ -359,17 +352,13 @@ namespace GoBabyGoV2.Droid.DependencyServices
                 try
                 {
                     if (secure)
-                    {
                         tmp = parentBluetoothService.mAdapter
                             .ListenUsingRfcommWithServiceRecord(NAME_SECURE, BLUETOOTH_CLASSIC_UUID);
 //                        tmp = parentBluetoothService.mAdapter.ListenUsingRfcommWithServiceRecord(NAME_SECURE, MY_UUID_SECURE);
-                    }
                     else
-                    {
                         tmp = parentBluetoothService.mAdapter
                             .ListenUsingInsecureRfcommWithServiceRecord(NAME_INSECURE, BLUETOOTH_CLASSIC_UUID);
 //                        tmp = parentBluetoothService.mAdapter.ListenUsingInsecureRfcommWithServiceRecord(NAME_INSECURE, MY_UUID_INSECURE);
-                    }
                 }
                 catch (IOException e)
                 {
@@ -385,7 +374,7 @@ namespace GoBabyGoV2.Droid.DependencyServices
                 Log.Debug(TAG, "Socket Type: " + mSocketType +
                                "BEGIN mAcceptThread" + this);
 
-                Name = ("AcceptThread" + mSocketType);
+                Name = "AcceptThread" + mSocketType;
 
                 BluetoothSocket socket = null;
 
@@ -406,7 +395,6 @@ namespace GoBabyGoV2.Droid.DependencyServices
 
                     // If a connection was accepted
                     if (socket != null)
-                    {
                         lock (_lock)
                         {
                             switch (parentBluetoothService.mState)
@@ -432,7 +420,6 @@ namespace GoBabyGoV2.Droid.DependencyServices
                                     break;
                             }
                         }
-                    }
                 }
 
                 Log.Info(TAG, "END mAcceptThread, socket Type: " + mSocketType);
@@ -454,16 +441,16 @@ namespace GoBabyGoV2.Droid.DependencyServices
 
 
         /**
-     * This thread runs while attempting to make an outgoing connection
-     * with a device. It runs straight through; the connection either
-     * succeeds or fails.
-     */
+         * This thread runs while attempting to make an outgoing connection
+         * with a device. It runs straight through; the connection either
+         * succeeds or fails.
+         */
         private class ConnectThread : Thread
         {
-            private MyBluetoothService parentBluetoothService;
-            private BluetoothSocket mmSocket;
-            private BluetoothDevice mmDevice;
-            private string mSocketType;
+            private readonly BluetoothDevice mmDevice;
+            private readonly BluetoothSocket mmSocket;
+            private readonly string mSocketType;
+            private readonly MyBluetoothService parentBluetoothService;
 
             public ConnectThread(BluetoothDevice device, bool secure, MyBluetoothService bluetoothService)
             {
@@ -477,15 +464,11 @@ namespace GoBabyGoV2.Droid.DependencyServices
                 try
                 {
                     if (secure)
-                    {
                         tmp = device.CreateRfcommSocketToServiceRecord(BLUETOOTH_CLASSIC_UUID);
 //                    tmp = device.CreateRfcommSocketToServiceRecord(MY_UUID_SECURE);
-                    }
                     else
-                    {
                         tmp = device.CreateInsecureRfcommSocketToServiceRecord(BLUETOOTH_CLASSIC_UUID);
 //                    tmp = device.CreateInsecureRfcommSocketToServiceRecord(MY_UUID_INSECURE);
-                    }
                 }
                 catch (IOException e)
                 {
@@ -499,7 +482,7 @@ namespace GoBabyGoV2.Droid.DependencyServices
             public override void Run()
             {
                 Log.Info(TAG, "BEGIN mConnectThread SocketType:" + mSocketType);
-                Name = ("ConnectThread" + mSocketType);
+                Name = "ConnectThread" + mSocketType;
 
                 // Always cancel discovery because it will slow down a connection
                 parentBluetoothService.mAdapter.CancelDiscovery();
@@ -557,10 +540,10 @@ namespace GoBabyGoV2.Droid.DependencyServices
          */
         private class ConnectedThread : Thread
         {
-            private MyBluetoothService parentBluetoothService;
-            private BluetoothSocket mmSocket;
-            private System.IO.Stream mmInStream;
-            private System.IO.Stream mmOutStream;
+            private Stream mmInStream;
+            private Stream mmOutStream;
+            private readonly BluetoothSocket mmSocket;
+            private readonly MyBluetoothService parentBluetoothService;
 
             public ConnectedThread(BluetoothSocket socket, string socketType, MyBluetoothService bluetoothService)
             {
@@ -568,8 +551,8 @@ namespace GoBabyGoV2.Droid.DependencyServices
                 Log.Debug(TAG, "create ConnectedThread: " + socketType);
                 mmSocket = socket;
 
-                System.IO.Stream tmpIn = null;
-                System.IO.Stream tmpOut = null;
+                Stream tmpIn = null;
+                Stream tmpOut = null;
 
                 // Get the BluetoothSocket input and output streams
                 try
@@ -590,12 +573,11 @@ namespace GoBabyGoV2.Droid.DependencyServices
             public override void Run()
             {
                 Log.Info(TAG, "BEGIN mConnectedThread");
-                byte[] buffer = new byte[1024];
-                int bytes = 0;
+                var buffer = new byte[1024];
+                var bytes = 0;
 
                 // Keep listening to the InputStream while connected
                 while (parentBluetoothService.mState == STATE_CONNECTED)
-                {
                     try
                     {
                         // Read from the InputStream
@@ -610,12 +592,11 @@ namespace GoBabyGoV2.Droid.DependencyServices
                         parentBluetoothService.ConnectionLost();
                         break;
                     }
-                }
             }
 
             /**
              * Write to the connected OutStream.
-             *
+             * 
              * @param buffer The bytes to write
              */
             public void Write(byte[] buffer)

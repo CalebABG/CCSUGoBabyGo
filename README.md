@@ -11,7 +11,7 @@ remotely controlled car, for movement facilitation.
 
 This Git project is a <b>Xamarin Forms Mobile</b> app for both Android and iOS for controlling the car using Bluetooth 4.0 LE for communication:
 1. From the car to the app (Sender) 
-2. From the app to the car (Reciever)
+2. From the app to the car (Receiver)
 
 The car will send status messages to the phone about its own sensors. 
 And the phone will send messages to the car with commands for controlling the motors.
@@ -23,27 +23,18 @@ Tilting the phone down is reverse, up is forward, and logically, left and right 
 
 ### App Design
 
-#### App Screen Recording
-![](Images/screenrecord.gif)
-
-
-SplashScreen | Welcome Page | Control Page |
-:------------------------------------------------:|:-------------------------------------------------:|:------------------------------------------------:
-![](Images/splashscreen.jpg?raw=true "UI Design") | ![](Images/welcomepage.jpg?raw=true "UI Design")  |  ![](Images/controlpage.jpg?raw=true "UI Design")
+Welcome Page | Control Page |
+:------------------------------------------------:|:-------------------------------------------------:
+![](Images/welcomepage.jpg?raw=true "UI Design")  |  ![](Images/controlpage.jpg?raw=true "UI Design")
 
 ---
 
 ### Branching
 
-The ```master``` branch contains the latest stable build of the project. This branch will be updated based on the ```accel_bias_dev``` branch when stable commits are pushed.
-
-The ```accel_bias_dev``` branch will be continuously updated, this will be the less stable branch but have the latest builds. 
-
+The ```master``` branch contains the latest stable build of the project.
 ---
 
 ### NuGet Packages Used
 - [Xamarin.Essentials](https://github.com/xamarin/Essentials) - A kit of essential API's!
-- [Xamarin.HotReload](https://github.com/AndreiMisiukevich/HotReload) - Live XAML view reloading!
-- [NUnit](http://nunit.org/) - An awesome unit-testing framework!
 - [MVVM Helpers](https://github.com/jamesmontemagno/mvvm-helpers) - MVVM helper classes!
 - [Xamarin.Forms.InputKit](https://github.com/enisn/Xamarin.Forms.InputKit) -  Awesome Controls such as Checkbox, Radiobutton, etc!

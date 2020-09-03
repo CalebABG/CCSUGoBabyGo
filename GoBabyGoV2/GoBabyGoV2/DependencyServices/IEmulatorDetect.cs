@@ -1,5 +1,4 @@
-﻿using System;
-namespace GoBabyGoV2.DependencyServices
+﻿namespace GoBabyGoV2.DependencyServices
 {
     public interface IEmulatorDetect
     {

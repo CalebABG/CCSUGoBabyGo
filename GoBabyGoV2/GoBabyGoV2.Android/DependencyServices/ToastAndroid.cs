@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+﻿using Android.Widget;
 using GoBabyGoV2.DependencyServices;
 using GoBabyGoV2.Droid.DependencyServices;
+using Xamarin.Forms;
+using Application = Android.App.Application;
 
-[assembly: Xamarin.Forms.Dependency(typeof(ToastAndroid))]
+[assembly: Dependency(typeof(ToastAndroid))]
+
 namespace GoBabyGoV2.Droid.DependencyServices
 {
     public class ToastAndroid : IToast

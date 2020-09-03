@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 using Xamarin.Forms;
 
 namespace GoBabyGoV2.Utilities
@@ -10,7 +8,9 @@ namespace GoBabyGoV2.Utilities
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (bool)value ? Application.Current.Resources["ShieldColorActive"] : Application.Current.Resources["ShieldColorInActive"];
+            return (bool) value
+                ? Application.Current.Resources["ShieldColorActive"]
+                : Application.Current.Resources["ShieldColorInActive"];
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

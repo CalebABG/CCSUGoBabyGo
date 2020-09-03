@@ -1,9 +1,9 @@
 ﻿//#define USE_METERS_PER_SECOND
 
 
+using System;
 using GoBabyGoV2.Utilities;
 using GoBabyGoV2.ViewModels;
-using System;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -27,7 +27,7 @@ namespace GoBabyGoV2.Views
             // Debug X bias for OnePlus 6T (Model A6013)
             if (DeviceInfo.Model.ToLower().Contains("oneplus") && DeviceInfo.Model.ToLower().Contains("a6013"))
                 AccelerometerSensor.Monitor.Calibration.BiasX = 0.15f;
-            
+
             // Start monitoring
             AccelerometerSensor.Monitor.StartMonitoring();
         }
@@ -36,7 +36,7 @@ namespace GoBabyGoV2.Views
 
         #region Accelerometer
 
-        void UpdateAxisX(float axisValue)
+        private void UpdateAxisX(float axisValue)
         {
             if (axisValue < AccelerometerSensor.Monitor.Calibration.MinX)
                 AccelerometerSensor.Monitor.Calibration.MinX = axisValue;
@@ -45,7 +45,7 @@ namespace GoBabyGoV2.Views
                 AccelerometerSensor.Monitor.Calibration.MaxX = axisValue;
         }
 
-        void UpdateAxisY(float axisValue)
+        private void UpdateAxisY(float axisValue)
         {
             if (axisValue < AccelerometerSensor.Monitor.Calibration.MinY)
                 AccelerometerSensor.Monitor.Calibration.MinY = axisValue;
@@ -58,22 +58,21 @@ namespace GoBabyGoV2.Views
         public void CarControlAccelerometerReadingChanged(object sender, AccelerometerChangedEventArgs e)
         {
             var data = e.Reading;
-            
+
             // Subtract out bias from each Axis
             var accelX = data.Acceleration.X - AccelerometerSensor.Monitor.Calibration.BiasX;
             var accelY = data.Acceleration.Y - AccelerometerSensor.Monitor.Calibration.BiasY;
 
             // Process Acceleration X and Y (Xamarin Essentials outputs in g-force units)
-            uint calcAccelX = (uint) Map(accelX, AccelerometerSensor.Monitor.Calibration.MinX,
+            var calcAccelX = (uint) Map(accelX, AccelerometerSensor.Monitor.Calibration.MinX,
                 AccelerometerSensor.Monitor.Calibration.MaxX, 255.0f, 0.0f);
 
-            uint calcAccelY = (uint) Map(accelY, AccelerometerSensor.Monitor.Calibration.MinY,
+            var calcAccelY = (uint) Map(accelY, AccelerometerSensor.Monitor.Calibration.MinY,
                 AccelerometerSensor.Monitor.Calibration.MaxY, 255.0f, 0.0f);
 
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 if (AccelerometerSensor.ShouldCalibrate)
-                {
                     switch (AccelerometerSensor.CalibrationFreezeAxis)
                     {
                         case CalibrationFreeze.X:
@@ -89,7 +88,6 @@ namespace GoBabyGoV2.Views
                             AccelerometerSensor.Monitor.UpdateCalibrationAxisY(accelY, UpdateAxisY);
                             break;
                     }
-                }
 
                 if (((CarControlViewModel) BindingContext).IsCalcTicked)
                 {
@@ -99,7 +97,6 @@ namespace GoBabyGoV2.Views
                 else
                 {
                     #if USE_METERS_PER_SECOND
-
                     const float c = 9.81f;
                     var ax = accelX * c;
                     var ay = accelY * c;
@@ -121,7 +118,10 @@ namespace GoBabyGoV2.Views
 
         #region BackButtonPress
 
-        protected override bool OnBackButtonPressed() { return true; }
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
 
         private async void OnExitRequested()
         {

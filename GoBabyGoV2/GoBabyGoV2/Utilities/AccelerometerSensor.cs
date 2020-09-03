@@ -6,8 +6,26 @@ using Xamarin.Forms;
 
 namespace GoBabyGoV2.Utilities
 {
-    public class AccelerometerSensor : IAccelerometerCalibrationChanged, IDisposable 
+    public class AccelerometerSensor : IAccelerometerCalibrationChanged, IDisposable
     {
+        #region OnDispose
+
+        public void Dispose()
+        {
+            if (AccelerometerChangedEvent == null) return;
+
+            // Remove event-handler from Accelerometer.ReadingChanged event
+            Accelerometer.ReadingChanged -= AccelerometerChangedEvent;
+
+            // Remove all event-handlers from AccelerometerChangedEvent
+            foreach (var _delegate in AccelerometerChangedEvent.GetInvocationList())
+                if (_delegate != null &&
+                    _delegate is EventHandler<AccelerometerChangedEventArgs> accelEventHandler)
+                    AccelerometerChangedEvent -= accelEventHandler;
+        }
+
+        #endregion
+
         #region StaticProperties
 
         public static AccelerometerSensor Monitor { get; set; } = new AccelerometerSensor();
@@ -17,7 +35,7 @@ namespace GoBabyGoV2.Utilities
         public static SensorSpeed SensorSpeed { get; } = SensorSpeed.Game;
 
         // Default sensor calibration values for X and Y (from OnePlus 6T Min/Max X and Y values)
-        public static float[] DefaultCalibration { get; } = { -1f, 1f, -1f, 1f };
+        public static float[] DefaultCalibration { get; } = {-1f, 1f, -1f, 1f};
 
         // Axis to freeze when calibrating
         public static CalibrationFreeze CalibrationFreezeAxis { get; set; } = CalibrationFreeze.None;
@@ -38,7 +56,8 @@ namespace GoBabyGoV2.Utilities
 
         #region AccelMethods
 
-        public void SetAccelerometerChangeEvent(EventHandler<AccelerometerChangedEventArgs> accelerometerChangedEvent = null)
+        public void SetAccelerometerChangeEvent(
+            EventHandler<AccelerometerChangedEventArgs> accelerometerChangedEvent = null)
         {
             if (accelerometerChangedEvent == null) return;
 
@@ -54,9 +73,7 @@ namespace GoBabyGoV2.Utilities
             // The only time the accelerometer shouldn't start is if it's in an iOS emulator
             if (!(DependencyService.Get<IEmulatorDetect>().IsRunningInEmulator() &&
                   Device.RuntimePlatform == Device.iOS))
-            {
                 Accelerometer.Start(SensorSpeed);
-            }
         }
 
         public void StopMonitoring()
@@ -67,36 +84,14 @@ namespace GoBabyGoV2.Utilities
 
         #endregion
 
-        #region OnDispose
-
-        public void Dispose()
-        {
-            if (AccelerometerChangedEvent == null) return;
-
-            // Remove event-handler from Accelerometer.ReadingChanged event
-            Accelerometer.ReadingChanged -= AccelerometerChangedEvent;
-
-            // Remove all event-handlers from AccelerometerChangedEvent
-            foreach (var _delegate in AccelerometerChangedEvent.GetInvocationList())
-            {
-                if (_delegate != null && 
-                    _delegate is EventHandler<AccelerometerChangedEventArgs> accelEventHandler)
-                {
-                    AccelerometerChangedEvent -= accelEventHandler;
-                }
-            }
-        }
-
-        #endregion
-
         #region AccelInterfaceImplementation
 
-        public void UpdateCalibrationAxisX(float val, Update updateFunc)
+        public void UpdateCalibrationAxisX(float val, UpdateAccelAction updateFunc)
         {
             updateFunc?.Invoke(val);
         }
 
-        public void UpdateCalibrationAxisY(float val, Update updateFunc)
+        public void UpdateCalibrationAxisY(float val, UpdateAccelAction updateFunc)
         {
             updateFunc?.Invoke(val);
         }

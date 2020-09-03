@@ -1,29 +1,20 @@
-﻿using GoBabyGoV2.Utilities;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows.Input;
+using GoBabyGoV2.Utilities;
 using Xamarin.Forms;
 
 namespace GoBabyGoV2.ViewModels
 {
     public class AccelerometerCalibrationViewModel
     {
-        #region Properties
-
-        public ICommand DoneButtonCommand { get; set; }
-
-        public ICommand SetDefaultCalibrationCommand { get; set; }
-
-        public ICommand ResetCalibrationCommand { get; set; }
-
-        #endregion
-
         #region Ctor
 
         public AccelerometerCalibrationViewModel()
         {
             #region SetupCommands
 
-            DoneButtonCommand = new Command(async () => await Application.Current.MainPage.Navigation.PopModalAsync(true));
+            DoneButtonCommand =
+                new Command(async () => await Application.Current.MainPage.Navigation.PopModalAsync(true));
 
             SetDefaultCalibrationCommand = new Command(async () => await SetDefaultCalibration());
 
@@ -34,21 +25,31 @@ namespace GoBabyGoV2.ViewModels
 
         #endregion
 
+        #region Properties
+
+        public ICommand DoneButtonCommand { get; set; }
+
+        public ICommand SetDefaultCalibrationCommand { get; set; }
+
+        public ICommand ResetCalibrationCommand { get; set; }
+
+        #endregion
+
         #region Methods
 
-        public void UpdateAxisX(float axisValue)
+        private void UpdateAxisX(float axisValue)
         {
             AccelerometerSensor.Monitor.Calibration.MinX = axisValue;
             AccelerometerSensor.Monitor.Calibration.MaxX = axisValue;
         }
 
-        public void UpdateAxisY(float axisValue)
+        private void UpdateAxisY(float axisValue)
         {
             AccelerometerSensor.Monitor.Calibration.MinY = axisValue;
             AccelerometerSensor.Monitor.Calibration.MaxY = axisValue;
         }
 
-        public async Task SetDefaultCalibration()
+        private async Task SetDefaultCalibration()
         {
             await Task.Run(() =>
             {
@@ -59,7 +60,7 @@ namespace GoBabyGoV2.ViewModels
             });
         }
 
-        public async Task ResetCalibration()
+        private async Task ResetCalibration()
         {
             await Task.Run(() =>
             {
